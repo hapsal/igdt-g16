@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy0tytgbep4mh"]
+[gd_scene load_steps=9 format=3 uid="uid://cy0tytgbep4mh"]
 
-[ext_resource type="Texture2D" uid="uid://bupsarrqdy8mc" path="res://Group 2 (2).png" id="1_dw8q7"]
-[ext_resource type="Texture2D" uid="uid://3gqop5bw8q8g" path="res://Rectangle 2.svg" id="2_5n04g"]
-[ext_resource type="Texture2D" uid="uid://drkxp5wtef2e7" path="res://Group 1.svg" id="2_8y3gq"]
-[ext_resource type="Texture2D" uid="uid://bhax4jk6yephl" path="res://Group 6 (1).svg" id="3_5cvy0"]
-[ext_resource type="Texture2D" uid="uid://b800vj58cq2rd" path="res://Rectangle 3.svg" id="4_3s0ol"]
-[ext_resource type="Texture2D" uid="uid://conavj77m8ea6" path="res://Group 4.svg" id="5_6pua2"]
+[ext_resource type="Texture2D" uid="uid://bupsarrqdy8mc" path="res://ui/Group 2 (2).png" id="1_omugl"]
+[ext_resource type="Texture2D" uid="uid://3gqop5bw8q8g" path="res://ui/Rectangle 2.svg" id="2_5n04g"]
+[ext_resource type="Texture2D" uid="uid://bhax4jk6yephl" path="res://ui/Group 6 (1).svg" id="3_a0cff"]
+[ext_resource type="Texture2D" uid="uid://b800vj58cq2rd" path="res://ui/Rectangle 3.svg" id="4_knr4i"]
+[ext_resource type="Texture2D" uid="uid://conavj77m8ea6" path="res://ui/Group 4.svg" id="5_kbvku"]
+[ext_resource type="Texture2D" uid="uid://drkxp5wtef2e7" path="res://ui/Group 1.svg" id="6_hnppx"]
+[ext_resource type="PackedScene" uid="uid://b72s2ywpxk7mo" path="res://scenes/player.tscn" id="7_gf4sa"]
+[ext_resource type="PackedScene" uid="uid://t0dfpbn1qwws" path="res://scenes/enemy.tscn" id="8_ys7hp"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -23,7 +25,7 @@ offset_left = 7.0
 offset_top = 6.0
 offset_right = 81.0
 offset_bottom = 106.0
-texture_normal = ExtResource("1_dw8q7")
+texture_normal = ExtResource("1_omugl")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -49,7 +51,7 @@ texture_progress = ExtResource("2_5n04g")
 
 [node name="HPIcon" type="TextureRect" parent="StatusMenu/HealthBar"]
 layout_mode = 2
-texture = ExtResource("3_5cvy0")
+texture = ExtResource("3_a0cff")
 expand_mode = 2
 stretch_mode = 4
 
@@ -60,11 +62,11 @@ alignment = 2
 [node name="XPBar" type="TextureProgressBar" parent="StatusMenu/XPBar"]
 layout_mode = 2
 value = 70.0
-texture_progress = ExtResource("4_3s0ol")
+texture_progress = ExtResource("4_knr4i")
 
 [node name="XPIcon" type="TextureRect" parent="StatusMenu/XPBar"]
 layout_mode = 2
-texture = ExtResource("5_6pua2")
+texture = ExtResource("5_kbvku")
 expand_mode = 2
 
 [node name="Gold" type="HBoxContainer" parent="."]
@@ -80,7 +82,7 @@ grow_horizontal = 2
 
 [node name="GoldTexture" type="TextureRect" parent="Gold"]
 layout_mode = 2
-texture = ExtResource("2_8y3gq")
+texture = ExtResource("6_hnppx")
 expand_mode = 2
 
 [node name="GoldAmountLabel" type="RichTextLabel" parent="Gold"]
@@ -90,3 +92,9 @@ text = "200"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("7_gf4sa")]
+position = Vector2(66, 496)
+
+[node name="enemy" parent="." instance=ExtResource("8_ys7hp")]
+position = Vector2(722, 204)
