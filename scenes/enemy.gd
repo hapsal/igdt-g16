@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 200
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Find the player character
 	var player = get_node("/root/UI/CharacterBody2D")
 

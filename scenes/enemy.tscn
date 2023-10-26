@@ -122,8 +122,8 @@ script = ExtResource("1_dkeuk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(123, 138)
 sprite_frames = SubResource("SpriteFrames_vj07h")
-animation = &"idle"
-frame_progress = 0.993149
+animation = &"back"
+frame_progress = 0.266845
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(125, 151)
@@ -137,6 +137,3 @@ shape = SubResource("CircleShape2D_f25m8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(124, 153)
 shape = SubResource("CircleShape2D_eas33")
-
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
