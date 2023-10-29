@@ -1,54 +1,54 @@
 [gd_scene load_steps=18 format=3 uid="uid://t0dfpbn1qwws"]
 
-[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_dkeuk"]
-[ext_resource type="Texture2D" uid="uid://c550lvjefj5tx" path="res://reaper_blade_2.png" id="1_ogal5"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_1xci4"]
+[ext_resource type="Texture2D" uid="uid://c550lvjefj5tx" path="res://art/reaper_blade_2.png" id="2_mu6py"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2prpy"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(0, 216, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4mcq"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(64, 216, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bntud"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(128, 216, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x6w1v"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(0, 0, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owm6g"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(64, 0, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7y4g3"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(128, 0, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvrqa"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(0, 72, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvh0y"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(64, 72, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ky782"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(128, 72, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ivqgy"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(0, 144, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_752kr"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(64, 144, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1pt0"]
-atlas = ExtResource("1_ogal5")
+atlas = ExtResource("2_mu6py")
 region = Rect2(128, 144, 64, 72)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vj07h"]
@@ -117,7 +117,7 @@ radius = 99.0454
 radius = 16.0
 
 [node name="enemy" type="CharacterBody2D"]
-script = ExtResource("1_dkeuk")
+script = ExtResource("1_1xci4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(123, 138)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c550lvjefj5tx"
-path="res://.godot/imported/reaper_blade_2.png-ce17ff76fa003159efb19fe6c3a0a89f.ctex"
+uid="uid://bqld5enaykca7"
+path="res://.godot/imported/player_character_front.png-c6c83d2cacd7a1f191f9a450523522e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://reaper_blade_2.png"
-dest_files=["res://.godot/imported/reaper_blade_2.png-ce17ff76fa003159efb19fe6c3a0a89f.ctex"]
+source_file="res://art/player_character_front.png"
+dest_files=["res://.godot/imported/player_character_front.png-c6c83d2cacd7a1f191f9a450523522e7.ctex"]
 
 [params]
 
