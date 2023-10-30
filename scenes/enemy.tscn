@@ -92,7 +92,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ky782")
 }],
 "loop": true,
-"name": &"side_left",
+"name": &"left_walk",
 "speed": 5.0
 }, {
 "frames": [{
@@ -106,34 +106,36 @@ animations = [{
 "texture": SubResource("AtlasTexture_n1pt0")
 }],
 "loop": true,
-"name": &"side_right",
+"name": &"right_walk",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f25m8"]
-radius = 99.0454
+radius = 220.635
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eas33"]
-radius = 16.0
+radius = 25.4951
 
 [node name="enemy" type="CharacterBody2D"]
+position = Vector2(125.486, 127.677)
 script = ExtResource("1_1xci4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(123, 138)
+position = Vector2(-1.48636, -13.6767)
+scale = Vector2(1.75, 1.61111)
 sprite_frames = SubResource("SpriteFrames_vj07h")
-animation = &"back"
-frame_progress = 0.266845
+animation = &"right_walk"
 
 [node name="DetectionArea" type="Area2D" parent="."]
-position = Vector2(125, 151)
-collision_layer = 2
-collision_mask = 2
+position = Vector2(-13.4864, 6.32324)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(1, 2)
+position = Vector2(17, 2.00002)
 shape = SubResource("CircleShape2D_f25m8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(124, 153)
+position = Vector2(-3.48636, 13.3232)
 shape = SubResource("CircleShape2D_eas33")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

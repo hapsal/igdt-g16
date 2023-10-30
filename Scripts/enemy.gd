@@ -1,16 +1,27 @@
 extends CharacterBody2D
 
-const SPEED = 200
+var speed = 50
+var player_chase = false
+var player = null
 
-func _physics_process(_delta):
-	# Find the player character
-	var player = get_node("/root/UI/CharacterBody2D")
+func _physics_process(delta):
+	if player_chase:
+		position += (player.position - position)/speed 
+		
+		$AnimatedSprite2D.play("idle")
+		
+		if(player.position.x - position.x) < 0:
+			$AnimatedSprite2D.play("left_walk")
+		else:
+			$AnimatedSprite2D.play("right_walk")
+	else:
+		$AnimatedSprite2D.play("idle")
 
-	if player:
-		# Calculate the direction to the player
-		var direction = (player.global_position - global_position).normalized()
+func _on_detection_area_body_entered(body):
+	player = body
+	player_chase = true
 
-		# Move towards the player
-		velocity = direction * SPEED
-
-	move_and_slide()
+func _on_detection_area_body_exited(body):
+	player = null
+	player_chase = false
+	

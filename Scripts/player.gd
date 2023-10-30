@@ -1,25 +1,38 @@
 extends CharacterBody2D
+class_name PlayerCharacter
 
-const SPEED = 600
-const ACCELERATION = 500
-#const FRICTION = 500
+const SPEED = 300
+var velocity_vector = Vector2.ZERO
+var anim_sprite: AnimatedSprite2D  # Reference to the AnimatedSprite2D node
+
+func _ready():
+	# Get a reference to the AnimatedSprite2D node
+	anim_sprite = $AnimatedSprite2D
+	anim_sprite.play("front_walk") 
 
 func _physics_process(delta):
-	# movement of the player
-	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	input_vector = input_vector.normalized()
+	player_movement(delta)
 
-	if input_vector != Vector2.ZERO:
-		#moves smoothly
-		velocity = velocity.move_toward(input_vector * SPEED, ACCELERATION * delta)
-		
-		#velocity = input_vector * SPEED
+func player_movement(delta):
+	# Reset the velocity vector before checking input
+	velocity_vector = Vector2.ZERO
 
-	else:
-		velocity = Vector2.ZERO
-		# stops smoothly
-		#velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-		
+	if Input.is_action_pressed("ui_right"):
+		velocity_vector.x += SPEED
+		anim_sprite.play("right_walk")
+	if Input.is_action_pressed("ui_left"):
+		velocity_vector.x -= SPEED
+		anim_sprite.play("left_walk")
+	if Input.is_action_pressed("ui_down"):
+		velocity_vector.y += SPEED
+		anim_sprite.play("front_walk")
+	if Input.is_action_pressed("ui_up"):
+		velocity_vector.y -= SPEED
+		anim_sprite.play("front_walk")
+
+	velocity = velocity_vector  # Set the character's velocity based on the input
+
+	if velocity_vector == Vector2.ZERO:
+		anim_sprite.stop()  # Stop the animation when no movement input
+
 	move_and_slide()
