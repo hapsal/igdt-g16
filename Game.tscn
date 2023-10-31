@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccy0jeacd43nk"]
+
+[ext_resource type="Script" path="res://Player_cha.gd" id="1_j4tt8"]
+[ext_resource type="Texture2D" uid="uid://5v2biec17psi" path="res://icon.svg" id="2_ehxbf"]
+[ext_resource type="Texture2D" uid="uid://bupsarrqdy8mc" path="res://UI graphics/Group 2 (2).png" id="3_7ga5x"]
+[ext_resource type="Texture2D" uid="uid://3gqop5bw8q8g" path="res://UI graphics/Rectangle 2.svg" id="4_ktqrp"]
+[ext_resource type="Texture2D" uid="uid://bhax4jk6yephl" path="res://UI graphics/Group 6 (1).svg" id="5_yht2q"]
+[ext_resource type="Texture2D" uid="uid://b800vj58cq2rd" path="res://UI graphics/Rectangle 3.svg" id="6_xqto6"]
+[ext_resource type="Texture2D" uid="uid://conavj77m8ea6" path="res://UI graphics/Group 4.svg" id="7_3qtoy"]
+[ext_resource type="Texture2D" uid="uid://drkxp5wtef2e7" path="res://UI graphics/Group 1.svg" id="8_ax0tv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pmcv"]
+size = Vector2(129, 131.5)
+
+[node name="Movement" type="CharacterBody2D"]
+script = ExtResource("1_j4tt8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(581, 340)
+texture = ExtResource("2_ehxbf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(579, 338)
+shape = SubResource("RectangleShape2D_5pmcv")
+
+[node name="Camera2D" type="Camera2D" parent="CollisionShape2D"]
+position = Vector2(-1, 2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CollisionShape2D/Camera2D"]
+
+[node name="UI" type="Control" parent="CollisionShape2D/Camera2D/CanvasLayer"]
+layout_mode = 3
+anchor_right = 1.457
+anchor_bottom = 1.617
+offset_left = 7.0
+offset_top = 11.0
+offset_right = -524.464
+offset_bottom = -398.816
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InventoryButton" type="TextureButton" parent="CollisionShape2D/Camera2D/CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 81.0
+offset_bottom = 106.0
+texture_normal = ExtResource("3_7ga5x")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="StatusMenu" type="VBoxContainer" parent="CollisionShape2D/Camera2D/CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -388.0
+offset_top = 9.0
+offset_right = -9.0
+offset_bottom = 153.0
+grow_horizontal = 0
+
+[node name="HealthBar" type="HBoxContainer" parent="CollisionShape2D/Camera2D/CanvasLayer/UI/StatusMenu"]
+layout_mode = 2
+alignment = 2
+
+[node name="HPBar" type="TextureProgressBar" parent="CollisionShape2D/Camera2D/CanvasLayer/UI/StatusMenu/HealthBar"]
+layout_mode = 2
+value = 49.0
+texture_progress = ExtResource("4_ktqrp")
+
+[node name="HPIcon" type="TextureRect" parent="CollisionShape2D/Camera2D/CanvasLayer/UI/StatusMenu/HealthBar"]
+layout_mode = 2
+texture = ExtResource("5_yht2q")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="XPBar" type="HBoxContainer" parent="CollisionShape2D/Camera2D/CanvasLayer/UI/StatusMenu"]
+layout_mode = 2
+alignment = 2
+
+[node name="XPBar" type="TextureProgressBar" parent="CollisionShape2D/Camera2D/CanvasLayer/UI/StatusMenu/XPBar"]
+layout_mode = 2
+value = 70.0
+texture_progress = ExtResource("6_xqto6")
+
+[node name="XPIcon" type="TextureRect" parent="CollisionShape2D/Camera2D/CanvasLayer/UI/StatusMenu/XPBar"]
+layout_mode = 2
+texture = ExtResource("7_3qtoy")
+expand_mode = 2
+
+[node name="Gold" type="HBoxContainer" parent="CollisionShape2D/Camera2D/CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.0
+offset_top = 8.0
+offset_right = 134.0
+offset_bottom = 136.0
+grow_horizontal = 2
+
+[node name="GoldTexture" type="TextureRect" parent="CollisionShape2D/Camera2D/CanvasLayer/UI/Gold"]
+layout_mode = 2
+texture = ExtResource("8_ax0tv")
+expand_mode = 2
+
+[node name="GoldAmountLabel" type="RichTextLabel" parent="CollisionShape2D/Camera2D/CanvasLayer/UI/Gold"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "200"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

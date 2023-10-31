@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b800vj58cq2rd"
-path="res://.godot/imported/Rectangle 3.svg-77b3c53a02f9b6bbce73a280af1a3849.ctex"
+uid="uid://bupsarrqdy8mc"
+path="res://.godot/imported/Group 2 (2).png-ace4b20d4b06247fc70d09bc77fe0eda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Rectangle 3.svg"
-dest_files=["res://.godot/imported/Rectangle 3.svg-77b3c53a02f9b6bbce73a280af1a3849.ctex"]
+source_file="res://UI graphics/Group 2 (2).png"
+dest_files=["res://.godot/imported/Group 2 (2).png-ace4b20d4b06247fc70d09bc77fe0eda.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

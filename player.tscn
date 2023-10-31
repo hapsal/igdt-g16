@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://pveo53l1jvmg"]
+[gd_scene load_steps=2 format=3 uid="uid://pveo53l1jvmg"]
+
+[ext_resource type="Script" path="res://Player_cha.gd" id="1_24nrk"]
 
 [node name="Player" type="Area2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_24nrk")
 metadata/_edit_group_ = true
