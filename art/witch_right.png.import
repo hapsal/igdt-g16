@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://cap562ef66tox"
+=======
+uid="uid://cxlyi7xepv0vd"
+>>>>>>> d4cb4076e4bf3fd1b4aee05ba155036e4d7d6986
 path="res://.godot/imported/witch_right.png-8633280cf3a483b0881e4c88e38cc62f.ctex"
 metadata={
 "vram_texture": false
