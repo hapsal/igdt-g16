@@ -1,6 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://b72s2ywpxk7mo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_sx357"]
+
 [ext_resource type="Texture2D" uid="uid://br4yrj5xsoklq" path="res://art/player_character_sprite.png" id="2_x0hr1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hsahm"]
@@ -139,6 +140,7 @@ shape = SubResource("CircleShape2D_oxbv0")
 wait_time = 0.7
 
 [node name="deal_attack_timer" type="Timer" parent="."]
+
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
