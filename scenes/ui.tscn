@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://drkxp5wtef2e7" path="res://ui/Group 1.svg" id="6_hnppx"]
 [ext_resource type="PackedScene" uid="uid://b72s2ywpxk7mo" path="res://scenes/player.tscn" id="7_gf4sa"]
 [ext_resource type="PackedScene" uid="uid://t0dfpbn1qwws" path="res://scenes/enemy.tscn" id="8_ys7hp"]
-[ext_resource type="PackedScene" uid="uid://c6otn162ksfrl" path="res://scenes/npc.tscn" id="9_c2dxo"]
+[ext_resource type="PackedScene" path="res://scenes/npc.tscn" id="9_c2dxo"]
 
 [node name="UI" type="Control"]
 layout_mode = 3

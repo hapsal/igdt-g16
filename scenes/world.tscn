@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://k1dggsgkfki6"]
+
+[ext_resource type="Texture2D" uid="uid://c0wqcxsqi821v" path="res://art/map.png" id="1_crwh1"]
+[ext_resource type="PackedScene" uid="uid://b72s2ywpxk7mo" path="res://scenes/player.tscn" id="2_4ehs5"]
+[ext_resource type="PackedScene" uid="uid://t0dfpbn1qwws" path="res://scenes/enemy.tscn" id="3_qpy3j"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ewyu5"]
+texture = ExtResource("1_crwh1")
+0:0/size_in_atlas = Vector2i(93, 62)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_wk0vh"]
+sources/2 = SubResource("TileSetAtlasSource_ewyu5")
+
+[node name="World" type="Node2D"]
+position = Vector2(748.531, 390.974)
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(85, 49)
+tile_set = SubResource("TileSet_wk0vh")
+cell_quadrant_size = 10
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 2, 0)
+
+[node name="player" parent="." instance=ExtResource("2_4ehs5")]
+position = Vector2(551.543, -101.823)
+
+[node name="enemy" parent="." instance=ExtResource("3_qpy3j")]
