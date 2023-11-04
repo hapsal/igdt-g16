@@ -29,12 +29,26 @@ bg_color = Color(0.998159, 0.36076, 3.85046e-07, 1)
 [node name="main" type="Node2D"]
 script = ExtResource("1_r5gh8")
 
-[node name="Map" type="Sprite2D" parent="."]
-position = Vector2(577, 322)
-scale = Vector2(0.766667, 0.644)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Map" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(631, 387)
+scale = Vector2(1.48712, 1.24918)
 texture = ExtResource("2_x35s0")
 
-[node name="Play" type="Button" parent="."]
+[node name="Play" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_left = 475.0
 offset_top = 252.0
 offset_right = 689.0
@@ -43,7 +57,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_lasoi")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1woww")
 text = "Play"
 
-[node name="Quit" type="Button" parent="."]
+[node name="Quit" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_left = 474.0
 offset_top = 386.0
 offset_right = 688.0
@@ -52,11 +67,14 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_mgr4u")
 theme_override_styles/hover = SubResource("StyleBoxFlat_wwn4o")
 text = "Quit"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Control"]
 stream = ExtResource("2_vceby")
 volume_db = -10.0
 autoplay = true
 bus = &"Music"
 
-[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+position = Vector2(575, 318)
+
+[connection signal="pressed" from="CanvasLayer/Control/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Quit" to="." method="_on_quit_pressed"]
