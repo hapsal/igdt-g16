@@ -19,5 +19,6 @@ func _on_NPC_body_exited(body):
 func _process(delta):
 	$Indicator.visible = active
 	if active == true && Input.is_action_just_pressed("Interact") == true:
-		print("interact")
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogue.dialogue"),"start")
+		return
 	pass

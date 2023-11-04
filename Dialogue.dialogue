@@ -1,0 +1,11 @@
+~ start
+
+NPC: [[Hi|Hello|Howdy]], traveler, nice to meet you.
+- Nice to meet you!
+	NPC: You too!.
+- (Leave without saying anything)
+	NPC: Ehm, okay see you I guess. 
+- Gotta go, bye! 
+	NPC: It was nice to meet you!
+
+=> END
