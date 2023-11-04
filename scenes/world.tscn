@@ -1,5 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmvevabjt0cct"]
 
+
 [ext_resource type="Texture2D" uid="uid://c0wqcxsqi821v" path="res://art/map.png" id="1_crwh1"]
 [ext_resource type="PackedScene" uid="uid://b72s2ywpxk7mo" path="res://scenes/player.tscn" id="2_4ehs5"]
 [ext_resource type="PackedScene" uid="uid://t0dfpbn1qwws" path="res://scenes/enemy.tscn" id="3_qpy3j"]
