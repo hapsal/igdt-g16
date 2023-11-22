@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://ytnknlpviqxl"]
+
+[ext_resource type="Script" path="res://scenes/DamageIndicator.gd" id="1_38sva"]
+[ext_resource type="AudioStream" uid="uid://c1odbmfhugngt" path="res://assets/audio/sfx/Hit.wav" id="2_87got"]
+
+[sub_resource type="Animation" id="Animation_vjwx0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageIndicator:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageIndicator:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gtclm"]
+resource_name = "damage"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageIndicator")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageIndicator:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DamageIndicator:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qp3j3"]
+_data = {
+"RESET": SubResource("Animation_vjwx0"),
+"damage": SubResource("Animation_gtclm")
+}
+
+[node name="DamageIndicator" type="Node2D"]
+position = Vector2(327, 164)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_38sva")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+autoplay = "damage"
+libraries = {
+"": SubResource("AnimationLibrary_qp3j3")
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.784314, 0, 0.0627451, 1)
+offset_left = 4.0
+offset_top = -9.0
+offset_right = 54.0
+offset_bottom = 51.0
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_87got")

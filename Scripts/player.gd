@@ -7,6 +7,8 @@ var health = 100
 var player_alive = true
 var attack_in_progress = false
 
+
+
 # General movement variables
 const SPEED = 300
 var velocity_vector = Vector2.ZERO
@@ -19,6 +21,7 @@ func _ready():
 func _physics_process(delta):
 	player_movement(delta) 
 	enemy_attack()
+	set_health_bar()
 	
 	if health <= 0:
 		player_alive = false  # Player dies from too much damage
@@ -57,6 +60,8 @@ func player_movement(delta):
 		
 	move_and_slide()
 
+func set_health_bar():
+	$Camera2D/CanvasLayer/UI/StatusMenu/HealthBar/HPBar.value = health
 
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
@@ -71,7 +76,9 @@ func player():
 
 func enemy_attack():
 	if enemy_in_attack_range and enemy_attack_cooldown == true:
-		health = health - 10
+		var attackPower = 10
+		spawn_dmgIndicator(attackPower)
+		health = health - attackPower
 		enemy_attack_cooldown = false
 		$attack_cooldown.start() 
 		print("player health is ", health)
@@ -84,3 +91,17 @@ func _on_deal_attack_timer_timeout():
 	$deal_attack_timer.stop()
 	Global.player_current_attack = false
 	attack_in_progress = false
+
+
+func spawn_effect(EFFECT: PackedScene, effect_position: Vector2 = global_position, offset: Vector2 = Vector2.ZERO):
+		if EFFECT:
+			var effect = EFFECT.instantiate()
+			get_tree().current_scene.add_child(effect)
+			effect.global_position = effect_position + offset  # Applying offset to the position
+			return effect 
+			
+func spawn_dmgIndicator(damage: int):
+	var INDICATOR_DAMAGE = preload("res://scenes/damage_indicator.tscn")
+	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(60, -40))
+	if indicator:
+		indicator.label_node.text = "- " + str(damage)
