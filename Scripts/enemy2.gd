@@ -12,14 +12,14 @@ func _physics_process(delta):
 	if player_chase:
 		position += (player.position - position)/speed 
 		
-		$AnimatedSprite2D.play("front_walk")
+		$AnimatedSprite2D.play("back")
 		
 		if(player.position.x - position.x) < 0:
-			$AnimatedSprite2D.play("left_walk")
+			$AnimatedSprite2D.play("left")
 		else:
-			$AnimatedSprite2D.play("right_walk")
+			$AnimatedSprite2D.play("right")
 	else:
-		$AnimatedSprite2D.play("idle")
+		$AnimatedSprite2D.play("front")
 
 func _on_detection_area_body_entered(body):
 	player = body
@@ -38,7 +38,7 @@ func deal_with_damage():
 			health = health - 10
 			$take_damage_cooldown.start()
 			can_take_damage = false
-			print("witch health is ", health)
+			print("ghost health is ", health)
 			if health <= 0: 
 				self.queue_free()
 
