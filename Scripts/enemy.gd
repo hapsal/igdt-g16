@@ -7,6 +7,10 @@ var health = 100
 var player_in_attack_zone = false
 var can_take_damage = true
 
+func _ready():
+	set_health_label()
+
+
 func _physics_process(delta):
 	deal_with_damage()
 	if player_chase:
@@ -40,6 +44,7 @@ func deal_with_damage():
 			$take_damage_cooldown.start()
 			can_take_damage = false
 			print("witch health is ", health)
+			set_health_label()
 			if health <= 0: 
 				self.queue_free()
 
@@ -69,3 +74,6 @@ func spawn_dmgIndicator(damage: int):
 	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(60, -40))
 	if indicator:
 		indicator.label_node.text = "- " + str(damage)
+		
+func set_health_label() -> void:
+	$HealthLabel.value = health
