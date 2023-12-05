@@ -95,13 +95,15 @@ func _on_deal_attack_timer_timeout():
 
 func spawn_effect(EFFECT: PackedScene, effect_position: Vector2 = global_position, offset: Vector2 = Vector2.ZERO):
 		if EFFECT:
+			
 			var effect = EFFECT.instantiate()
-			get_tree().current_scene.add_child(effect)
 			effect.global_position = effect_position + offset  # Applying offset to the position
+			get_tree().current_scene.add_child(effect)
+			
 			return effect 
 			
 func spawn_dmgIndicator(damage: int):
-	var INDICATOR_DAMAGE = preload("res://scenes/damage_indicator.tscn")
+	var INDICATOR_DAMAGE = preload("res://ui/damage_indicator.tscn")
 	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(60, -40))
 	if indicator:
 		indicator.label_node.text = "- " + str(damage)

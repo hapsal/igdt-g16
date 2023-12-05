@@ -7,6 +7,10 @@ var health = 100
 var player_in_attack_zone = false
 var can_take_damage = true
 
+func _ready():
+	set_health_label()
+
+
 func _physics_process(delta):
 	deal_with_damage()
 	if player_chase:
@@ -36,9 +40,11 @@ func deal_with_damage():
 	if player_in_attack_zone and Global.player_current_attack == true:
 		if can_take_damage == true:
 			health = health - 10
+			spawn_dmgIndicator(10)
 			$take_damage_cooldown.start()
 			can_take_damage = false
 			print("witch health is ", health)
+			set_health_label()
 			if health <= 0: 
 				self.queue_free()
 
@@ -53,4 +59,21 @@ func _on_enemy_hitbox_body_exited(body):
 
 func _on_take_damage_cooldown_timeout():
 	can_take_damage = true
-	
+
+func spawn_effect(EFFECT: PackedScene, effect_position: Vector2 = global_position, offset: Vector2 = Vector2.ZERO):
+		if EFFECT:
+			
+			var effect = EFFECT.instantiate()
+			effect.global_position = effect_position + offset  # Applying offset to the position
+			get_tree().current_scene.add_child(effect)
+			
+			return effect 
+			
+func spawn_dmgIndicator(damage: int):
+	var INDICATOR_DAMAGE = preload("res://ui/enemy_damage_indicator.tscn")
+	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(60, -40))
+	if indicator:
+		indicator.label_node.text = "- " + str(damage)
+		
+func set_health_label() -> void:
+	$HealthLabel.value = health
