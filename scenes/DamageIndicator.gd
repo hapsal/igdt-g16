@@ -7,7 +7,7 @@ var label_node: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AudioStreamPlayer2D.play()
+	#$AudioStreamPlayer2D.play()
 	label_node = $Label
 	SHIFT_DIRECTION = Vector2(randf_range(-1,1), randf_range(-1,1))
 	pass # Replace with function body.
