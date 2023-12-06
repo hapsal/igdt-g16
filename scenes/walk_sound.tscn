@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcf2otikyejno"]
+
+[ext_resource type="AudioStream" uid="uid://dl5cilrb5g8n" path="res://assets/audio/sfx/walk.wav" id="1_w4imo"]
+
+[node name="WalkSound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_w4imo")
+bus = &"SFX"
