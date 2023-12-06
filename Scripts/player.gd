@@ -4,6 +4,10 @@ extends CharacterBody2D
 var enemy_in_attack_range = false
 var enemy_attack_cooldown = true
 var health = 100
+var experience = 0
+var gold = 0
+var level = 1
+var levelup = 0
 var player_alive = true
 var attack_in_progress = false
 
@@ -19,21 +23,26 @@ func _ready():
 	anim_sprite.play("front_walk") 
 
 func _physics_process(delta):
-	player_movement(delta) 
+	if(player_alive):
+		player_movement(delta) 
+	else:
+		anim_sprite.play("death_animation") 
 	enemy_attack()
-	set_health_bar()
+	set_player_status()
 	
 	if health <= 0:
 		player_alive = false  # Player dies from too much damage
 		health = 0
 		print("Game over, you died!")
-		self.queue_free()
+		#self.queue_free()
 	
 func player_movement(delta):
 	# Reset the velocity vector before checking input
 	velocity_vector = Vector2.ZERO
 	
 # Basic movement statements
+	
+
 	if Input.is_action_pressed("ui_right"):
 		velocity_vector.x += SPEED
 		anim_sprite.play("right_walk")
@@ -60,8 +69,19 @@ func player_movement(delta):
 		
 	move_and_slide()
 
+func set_player_status():
+	set_health_bar()
+	set_experience_bar()
+	set_gold_amount()
+
 func set_health_bar():
 	$Camera2D/CanvasLayer/UI/StatusMenu/HealthBar/HPBar.value = health
+	
+func set_experience_bar():
+	$Camera2D/CanvasLayer/UI/StatusMenu/XPBar/XPBar.value = experience
+
+func set_gold_amount():
+	$Camera2D/CanvasLayer/UI/Gold/GoldAmountLabel.text = str(gold)
 
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
@@ -107,3 +127,5 @@ func spawn_dmgIndicator(damage: int):
 	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(60, -40))
 	if indicator:
 		indicator.label_node.text = "- " + str(damage)
+
+
