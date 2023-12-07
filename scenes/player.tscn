@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b72s2ywpxk7mo"]
+[gd_scene load_steps=51 format=3 uid="uid://b72s2ywpxk7mo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_sx357"]
 [ext_resource type="Texture2D" uid="uid://yuhxtcnualgx" path="res://art/pc_death_sprite.png" id="2_am8ak"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://drkxp5wtef2e7" path="res://ui/Group 1.svg" id="8_mr68m"]
 [ext_resource type="AudioStream" uid="uid://q5wnjy2hhccq" path="res://assets/audio/sfx/Ugh.wav" id="12_mqj6h"]
 [ext_resource type="AudioStream" uid="uid://ymsfqgotf41h" path="res://assets/audio/sfx/swing.wav" id="13_1daw3"]
+[ext_resource type="AudioStream" uid="uid://bfkf7hw3t6bow" path="res://assets/audio/sfx/player_deathv2.wav" id="13_7rek6"]
 [ext_resource type="Script" path="res://scenes/SwordSwing.gd" id="13_t5rj4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hsahm"]
@@ -232,7 +233,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v5mgg")
 }, {
-"duration": 5.0,
+"duration": 20.0,
 "texture": SubResource("AtlasTexture_x8bui")
 }],
 "loop": true,
@@ -306,7 +307,7 @@ shape = SubResource("CapsuleShape2D_hsahm")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(134, 81)
 sprite_frames = SubResource("SpriteFrames_b5ay7")
-animation = &"attack_down"
+animation = &"death_animation"
 
 [node name="player_hitbox" type="Area2D" parent="."]
 position = Vector2(128, 103)
@@ -433,6 +434,9 @@ show_percentage = false
 
 [node name="DamageSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_mqj6h")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_7rek6")
 
 [node name="healing_cooldown" type="Timer" parent="."]
 wait_time = 2.0

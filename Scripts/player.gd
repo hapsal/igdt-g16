@@ -13,7 +13,7 @@ var last_input = null
 signal new_player_level(level)
 
 var death_animation_playing: bool = false
-
+var death_sound = true
 
 #Player status variables
 var health = 100
@@ -54,6 +54,9 @@ func _physics_process(delta):
 	if health <= 0:
 		player_alive = false  # Player dies from too much damage
 		health = 0
+		if(death_sound):
+			$DeathSound.play()
+			death_sound = false
 		anim_sprite.play("death_animation")
 		await get_tree().create_timer(2).timeout
 		get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
@@ -162,7 +165,7 @@ func player():
 	pass
 
 func enemy_attack():
-	if enemy_in_attack_range and enemy_attack_cooldown == true:
+	if enemy_in_attack_range and enemy_attack_cooldown and player_alive == true:
 		var attackPower = 10
 		spawn_dmgIndicator(attackPower)
 		health = health - attackPower
@@ -170,6 +173,7 @@ func enemy_attack():
 		enemy_attack_cooldown = false
 		$attack_cooldown.start() 
 		print("player health is ", health)
+
 
 func _on_attack_cooldown_timeout(): 
 	enemy_attack_cooldown = true
