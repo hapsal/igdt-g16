@@ -1,8 +1,8 @@
 [gd_scene load_steps=41 format=3 uid="uid://chwkhkv0faeg2"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_3.gd" id="1_8c4i3"]
-[ext_resource type="Texture2D" uid="uid://b87famd1nfdly" path="res://art/pumpkin_attack_sprite.png" id="2_w0k50"]
-[ext_resource type="Texture2D" uid="uid://c7tso84vrv1qt" path="res://art/pumpkin_sprite.png" id="3_66gvp"]
+[ext_resource type="Texture2D" uid="uid://cdnbdwn7hm4mp" path="res://art/pumpkin_attack_sprite.png" id="2_w0k50"]
+[ext_resource type="Texture2D" uid="uid://c4lh3snoqi78v" path="res://art/pumpkin_sprite.png" id="3_66gvp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swjv6"]
 atlas = ExtResource("2_w0k50")

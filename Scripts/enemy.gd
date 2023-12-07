@@ -17,18 +17,25 @@ func _ready():
 	set_health_label()
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	deal_with_damage()
 	
 	if player_chase:
-		position += (player.position - position)/speed 
+		var direction_to_player = player.position - position
+		var x_difference = abs(direction_to_player.x)
+		var y_difference = abs(direction_to_player.y)
 
-		$AnimatedSprite2D.play("front_walk")
-		
-		if(player.position.x - position.x) < 0:
-			$AnimatedSprite2D.play("left_walk")
+		if x_difference > y_difference:
+			if direction_to_player.x < 0:
+				$AnimatedSprite2D.play("left_walk")
+			else:
+				$AnimatedSprite2D.play("right_walk")
 		else:
-			$AnimatedSprite2D.play("right_walk")
+			if direction_to_player.y < 0:
+				$AnimatedSprite2D.play("back_walk")
+			else:
+				$AnimatedSprite2D.play("front_walk")
+		position += direction_to_player.normalized() * speed * _delta
 	else:
 		$AnimatedSprite2D.play("idle")
 

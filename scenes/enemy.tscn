@@ -167,7 +167,8 @@ script = ExtResource("1_1xci4")
 position = Vector2(0.514, -12.677)
 scale = Vector2(1.34879, 1.28405)
 sprite_frames = SubResource("SpriteFrames_gra1f")
-animation = &"front_walk"
+animation = &"right_walk"
+frame_progress = 0.471078
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-13.4864, 6.32324)
