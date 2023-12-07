@@ -124,10 +124,7 @@ func set_player_status():
 	set_gold_amount()
 	set_level()
 
-func set_player_status():
-	set_health_bar()
-	set_experience_bar()
-	set_gold_amount()
+
 
 func set_health_bar():
 	$Camera2D/CanvasLayer/UI/StatusMenu/HealthBar/HPBar.value = health
