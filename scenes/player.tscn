@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://b72s2ywpxk7mo"]
+[gd_scene load_steps=29 format=3 uid="uid://b72s2ywpxk7mo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_sx357"]
+[ext_resource type="Texture2D" uid="uid://d0bom2tgu8uvj" path="res://art/pc_death_sprite.png" id="2_am8ak"]
 [ext_resource type="Texture2D" uid="uid://br4yrj5xsoklq" path="res://art/player_character_sprite.png" id="2_x0hr1"]
 [ext_resource type="Texture2D" uid="uid://bupsarrqdy8mc" path="res://ui/Group 2 (2).png" id="3_bwjc5"]
 [ext_resource type="Texture2D" uid="uid://3gqop5bw8q8g" path="res://ui/Rectangle 2.svg" id="4_gdt7x"]
@@ -12,6 +13,22 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hsahm"]
 radius = 34.0
 height = 68.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peeih"]
+atlas = ExtResource("2_am8ak")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_266hd"]
+atlas = ExtResource("2_am8ak")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5mgg"]
+atlas = ExtResource("2_am8ak")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8bui"]
+atlas = ExtResource("2_am8ak")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3y3e"]
 atlas = ExtResource("2_x0hr1")
@@ -63,6 +80,23 @@ region = Rect2(384, 128, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b5ay7"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peeih")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_266hd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5mgg")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_x8bui")
+}],
+"loop": true,
+"name": &"death_animation",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s3y3e")
@@ -131,9 +165,7 @@ shape = SubResource("CapsuleShape2D_hsahm")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(134, 81)
 sprite_frames = SubResource("SpriteFrames_b5ay7")
-animation = &"front_walk"
-frame = 2
-frame_progress = 0.76546
+animation = &"death_animation"
 
 [node name="player_hitbox" type="Area2D" parent="."]
 position = Vector2(128, 103)
@@ -206,7 +238,6 @@ alignment = 2
 
 [node name="XPBar" type="TextureProgressBar" parent="Camera2D/CanvasLayer/UI/StatusMenu/XPBar"]
 layout_mode = 2
-value = 70.0
 texture_progress = ExtResource("6_xpubv")
 
 [node name="XPIcon" type="TextureRect" parent="Camera2D/CanvasLayer/UI/StatusMenu/XPBar"]
@@ -233,7 +264,8 @@ expand_mode = 2
 [node name="GoldAmountLabel" type="RichTextLabel" parent="Camera2D/CanvasLayer/UI/Gold"]
 layout_mode = 2
 size_flags_vertical = 4
-text = "200"
+bbcode_enabled = true
+text = "0"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

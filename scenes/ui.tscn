@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy0tytgbep4mh"]
+[gd_scene load_steps=6 format=3 uid="uid://cy0tytgbep4mh"]
 
 [ext_resource type="Texture2D" uid="uid://c0wqcxsqi821v" path="res://art/map.png" id="2_48nip"]
 [ext_resource type="PackedScene" uid="uid://t0dfpbn1qwws" path="res://scenes/enemy.tscn" id="5_idkly"]
-[ext_resource type="PackedScene" uid="uid://bokboxq8corst" path="res://scenes/enemy_2.tscn" id="6_aquqa"]
 [ext_resource type="PackedScene" uid="uid://b72s2ywpxk7mo" path="res://scenes/player.tscn" id="7_gf4sa"]
 [ext_resource type="PackedScene" uid="uid://c6otn162ksfrl" path="res://scenes/npc.tscn" id="9_c2dxo"]
 [ext_resource type="AudioStream" uid="uid://cga621vleo8wd" path="res://assets/audio/music/CalmAmbient.wav" id="11_57pqb"]
@@ -69,6 +68,3 @@ bus = &"Music"
 
 [node name="enemy" parent="." instance=ExtResource("5_idkly")]
 position = Vector2(-1043.51, 1208.68)
-
-[node name="enemy2" parent="." instance=ExtResource("6_aquqa")]
-position = Vector2(1232, 1309)
