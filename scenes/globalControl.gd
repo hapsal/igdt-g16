@@ -14,7 +14,6 @@ func _process(delta):
 
 
 
-
 func _on_enemy_drop_exp(amount):
 	$Player.get_exp(amount)
 
@@ -22,3 +21,7 @@ func _on_enemy_drop_exp(amount):
 
 func _on_enemy_drop_gold(amount):
 	$Player.get_gold(amount)
+
+
+func _on_player_new_player_level(level):
+	get_tree().call_group("Enemies", "set_player_level")

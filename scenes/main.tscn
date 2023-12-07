@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6h3mkal68uu3"]
+[gd_scene load_steps=8 format=3 uid="uid://b6h3mkal68uu3"]
 
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_mwram"]
 [ext_resource type="AudioStream" uid="uid://dgvb0rjfgl625" path="res://assets/audio/music/MenuGameMusicOrSomething.wav" id="2_vceby"]
 [ext_resource type="Texture2D" uid="uid://c0wqcxsqi821v" path="res://art/map.png" id="2_x35s0"]
 
@@ -26,6 +27,7 @@ border_color = Color(0, 0, 0, 1)
 bg_color = Color(0.998159, 0.36076, 3.85046e-07, 1)
 
 [node name="main" type="Node2D"]
+script = ExtResource("1_mwram")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
