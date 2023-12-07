@@ -4,6 +4,7 @@ extends CharacterBody2D
 var enemy_in_attack_range = false
 var enemy_attack_cooldown = true
 var helaing_cooldown = false
+
 var player_alive = true
 var attack_in_progress = false
 var last_input = null
@@ -30,6 +31,7 @@ func _ready():
 
 
 func _physics_process(delta):
+
 	if(helaing_cooldown):
 		$Camera2D/HealingCooldown.value = progress+$healing_cooldown.time_left
 	else:
@@ -39,6 +41,7 @@ func _physics_process(delta):
 			attack_movement(delta)
 		else:
 			player_movement(delta) 
+
 	else:
 		anim_sprite.play("death_animation") 
 	enemy_attack()
@@ -57,8 +60,10 @@ func player_movement(delta):
 	
 	
 # Basic movement statements
+
 	var animation_chosen = false	
 	
+
 	if Input.is_action_pressed("ui_right"):
 	
 		velocity_vector.x += SPEED
@@ -119,6 +124,11 @@ func set_player_status():
 	set_gold_amount()
 	set_level()
 
+func set_player_status():
+	set_health_bar()
+	set_experience_bar()
+	set_gold_amount()
+
 func set_health_bar():
 	$Camera2D/CanvasLayer/UI/StatusMenu/HealthBar/HPBar.value = health
 	
@@ -127,9 +137,11 @@ func set_experience_bar():
 
 func set_gold_amount():
 	$Camera2D/CanvasLayer/UI/Gold/GoldAmountLabel.text = str(gold)
+
 	
 func set_level():
 	$Camera2D/CanvasLayer/UI/Levelup/Label.text = str(level)
+
 
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
@@ -181,6 +193,7 @@ func spawn_dmgIndicator(damage: int):
 	if indicator:
 		indicator.label_node.text = "- " + str(damage)
 
+
 func get_exp(amount):
 	experience += amount
 	health = 100
@@ -205,3 +218,4 @@ func check_xp():
 
 func _on_healing_cooldown_timeout():
 	helaing_cooldown = false
+
