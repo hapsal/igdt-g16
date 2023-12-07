@@ -50,6 +50,7 @@ func _physics_process(delta):
 	if health <= 0:
 		player_alive = false  # Player dies from too much damage
 		health = 0
+		get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
 		print("Game over, you died!")
 		#self.queue_free()
 	
