@@ -2,19 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-
-uid="uid://yuhxtcnualgx"
-
-
-path="res://.godot/imported/pc_death_sprite.png-bc786e83a616e7e8c28cb7651750bff1.ctex"
+uid="uid://c6we02bu75xam"
+path="res://.godot/imported/level.png-c03360654eea5551fd84104f7dd2e4da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pc_death_sprite.png"
-dest_files=["res://.godot/imported/pc_death_sprite.png-bc786e83a616e7e8c28cb7651750bff1.ctex"]
+source_file="res://ui/level.png"
+dest_files=["res://.godot/imported/level.png-c03360654eea5551fd84104f7dd2e4da.ctex"]
 
 [params]
 

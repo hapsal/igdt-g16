@@ -6,13 +6,19 @@ var player = null
 var health = 100
 var player_in_attack_zone = false
 var can_take_damage = true
+var combat_system
+
+signal drop_exp(amount)
+signal drop_gold(amount)
 
 func _ready():
+	
 	set_health_label()
-
+	
 
 func _physics_process(delta):
 	deal_with_damage()
+	
 	if player_chase:
 		position += (player.position - position)/speed 
 		
@@ -46,6 +52,8 @@ func deal_with_damage():
 			print("witch health is ", health)
 			set_health_label()
 			if health <= 0: 
+				give_experience()
+				give_gold()
 				self.queue_free()
 
 func _on_enemy_hitbox_body_entered(body):
@@ -77,3 +85,10 @@ func spawn_dmgIndicator(damage: int):
 		
 func set_health_label() -> void:
 	$HealthLabel.value = health
+	
+func give_experience():
+	drop_exp.emit(60)
+	
+func give_gold():
+	drop_gold.emit(120)
+

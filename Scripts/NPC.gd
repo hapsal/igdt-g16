@@ -11,7 +11,6 @@ func _on_NPC_body_entered(body):
 		active = true
 
 
-
 func _on_NPC_body_exited(body):
 		active = false
 

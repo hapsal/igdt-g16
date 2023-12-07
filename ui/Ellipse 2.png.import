@@ -2,19 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-
-uid="uid://yuhxtcnualgx"
-
-
-path="res://.godot/imported/pc_death_sprite.png-bc786e83a616e7e8c28cb7651750bff1.ctex"
+uid="uid://ehiwn1hxk04o"
+path="res://.godot/imported/Ellipse 2.png-259b65d7739f4269e6caf5000fd4b9ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pc_death_sprite.png"
-dest_files=["res://.godot/imported/pc_death_sprite.png-bc786e83a616e7e8c28cb7651750bff1.ctex"]
+source_file="res://ui/Ellipse 2.png"
+dest_files=["res://.godot/imported/Ellipse 2.png-259b65d7739f4269e6caf5000fd4b9ad.ctex"]
 
 [params]
 
