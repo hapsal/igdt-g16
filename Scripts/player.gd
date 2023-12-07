@@ -12,7 +12,6 @@ var last_input = null
 
 signal new_player_level(level)
 
-var death_animation_playing: bool = false
 var death_sound = true
 
 #Player status variables
