@@ -38,9 +38,9 @@ func _ready():
 func _physics_process(delta):
 
 	if(helaing_cooldown):
-		$Camera2D/HealingCooldown.value = progress+$healing_cooldown.time_left
+		$Camera2D/CanvasLayer/UI/status/HealingCooldown.value = progress+$healing_cooldown.time_left
 	else:
-		$Camera2D/HealingCooldown.value = 0
+		$Camera2D/CanvasLayer/UI/status/HealingCooldown.value = 0
 	if(player_alive):
 		if(attack_in_progress):
 			attack_movement(delta)

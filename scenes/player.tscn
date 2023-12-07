@@ -402,8 +402,8 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -115.0
-offset_right = 84.0
+offset_left = -83.0
+offset_right = 68.0
 offset_bottom = 128.0
 grow_horizontal = 2
 scale = Vector2(1.1897, 1.1897)
@@ -422,12 +422,27 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="HealingCooldown" type="ProgressBar" parent="Camera2D"]
+[node name="status" type="HBoxContainer" parent="Camera2D/CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -174.0
+offset_top = -53.0
+offset_right = 103.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.1897, 1.1897)
+
+[node name="HealingCooldown" type="ProgressBar" parent="Camera2D/CanvasLayer/UI/status"]
 modulate = Color(1, 0, 0, 1)
-offset_left = 438.773
-offset_top = -233.199
-offset_right = 564.773
-offset_bottom = -206.199
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.15
 max_value = 2.0
 allow_lesser = true
 show_percentage = false
