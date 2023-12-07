@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o7xbo04gm48l"
-path="res://.godot/imported/pc_attacks_sprite.png-1b593d60022ab252ad4419db45fb10f1.ctex"
+uid="uid://bstg0ifaksr8w"
+path="res://.godot/imported/npc3_front.png-806a8d0a9f1d0d977271f359aad97cf7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pc_attacks_sprite.png"
-dest_files=["res://.godot/imported/pc_attacks_sprite.png-1b593d60022ab252ad4419db45fb10f1.ctex"]
+source_file="res://art/npc3_front.png"
+dest_files=["res://.godot/imported/npc3_front.png-806a8d0a9f1d0d977271f359aad97cf7.ctex"]
 
 [params]
 

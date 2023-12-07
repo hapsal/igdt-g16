@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o7xbo04gm48l"
-path="res://.godot/imported/pc_attacks_sprite.png-1b593d60022ab252ad4419db45fb10f1.ctex"
+uid="uid://c1h8y17svvb68"
+path="res://.godot/imported/village_map.png-790428004bd4556254706a787f700600.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pc_attacks_sprite.png"
-dest_files=["res://.godot/imported/pc_attacks_sprite.png-1b593d60022ab252ad4419db45fb10f1.ctex"]
+source_file="res://art/village_map.png"
+dest_files=["res://.godot/imported/village_map.png-790428004bd4556254706a787f700600.ctex"]
 
 [params]
 

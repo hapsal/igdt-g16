@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o7xbo04gm48l"
-path="res://.godot/imported/pc_attacks_sprite.png-1b593d60022ab252ad4419db45fb10f1.ctex"
+uid="uid://d4eau0rpntvv0"
+path="res://.godot/imported/witch_sprite_modified.png-d5f1f021f76f8bd97707a325f1e62800.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pc_attacks_sprite.png"
-dest_files=["res://.godot/imported/pc_attacks_sprite.png-1b593d60022ab252ad4419db45fb10f1.ctex"]
+source_file="res://art/witch_sprite_modified.png"
+dest_files=["res://.godot/imported/witch_sprite_modified.png-d5f1f021f76f8bd97707a325f1e62800.ctex"]
 
 [params]
 
