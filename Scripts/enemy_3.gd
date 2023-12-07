@@ -1,13 +1,12 @@
 extends CharacterBody2D
 
-var speed = 130
+var speed = 150
 var player_chase = false
 var player = null
 var health = 100
 var player_in_attack_zone = false
 var can_take_damage = true
 var combat_system
-var player_level = 1
 
 signal drop_exp(amount)
 signal drop_gold(amount)
@@ -54,11 +53,11 @@ func enemy():
 func deal_with_damage():
 	if player_in_attack_zone and Global.player_current_attack == true:
 		if can_take_damage == true:
-			health = health - 10 * player_level
-			spawn_dmgIndicator(10 * player_level)
+			health = health - 10
+			spawn_dmgIndicator(10)
 			$take_damage_cooldown.start()
 			can_take_damage = false
-			print("witch health is ", health)
+			print("pumpkin health is ", health)
 			set_health_label()
 			if health <= 0: 
 				give_experience()
@@ -101,9 +100,3 @@ func give_experience():
 func give_gold():
 	drop_gold.emit(120)
 
-func set_player_level():
-	player_level +=1
-
-
-func _on_enemy_2_drop_exp(amount):
-	pass # Replace with function body.
