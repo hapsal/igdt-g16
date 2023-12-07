@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bokboxq8corst"]
 
-[ext_resource type="Script" path="res://Scripts/enemy_2.gd" id="1_84xpw"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_ld3w8"]
 [ext_resource type="Texture2D" uid="uid://mp650fg2nfn3" path="res://art/ghost_back.png" id="2_m676v"]
 [ext_resource type="Texture2D" uid="uid://b376sxwjoss2u" path="res://art/ghost_front.png" id="3_vbgdy"]
 [ext_resource type="Texture2D" uid="uid://cs751xb0ltf14" path="res://art/ghost_left.png" id="4_sdf2n"]
@@ -29,7 +29,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ey6px")
 }],
 "loop": true,
-"name": &"back",
+"name": &"back_walk",
 "speed": 5.0
 }, {
 "frames": [{
@@ -37,7 +37,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_goxwt")
 }],
 "loop": true,
-"name": &"front",
+"name": &"front_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goxwt")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -45,7 +53,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_e2co6")
 }],
 "loop": true,
-"name": &"left",
+"name": &"left_walk",
 "speed": 5.0
 }, {
 "frames": [{
@@ -53,7 +61,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_goy38")
 }],
 "loop": true,
-"name": &"right",
+"name": &"right_walk",
 "speed": 5.0
 }]
 
@@ -68,12 +76,12 @@ radius = 70.8012
 
 [node name="enemy2" type="CharacterBody2D"]
 position = Vector2(125.486, 127.677)
-script = ExtResource("1_84xpw")
+script = ExtResource("1_ld3w8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_rkkd7")
-animation = &"right"
+animation = &"idle"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-13.4864, 0)

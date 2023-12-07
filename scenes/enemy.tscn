@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://t0dfpbn1qwws"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_1xci4"]
-[ext_resource type="Texture2D" uid="uid://d4eau0rpntvv0" path="res://art/witch_sprite_modified.png" id="2_7twop"]
+[ext_resource type="Texture2D" uid="uid://ci55g67uflve8" path="res://art/witch_sprite_modified.png" id="2_7twop"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k55ve"]
 atlas = ExtResource("2_7twop")
@@ -167,8 +167,7 @@ script = ExtResource("1_1xci4")
 position = Vector2(0.514, -12.677)
 scale = Vector2(1.34879, 1.28405)
 sprite_frames = SubResource("SpriteFrames_gra1f")
-animation = &"back_walk"
-frame_progress = 0.62048
+animation = &"front_walk"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-13.4864, 6.32324)
