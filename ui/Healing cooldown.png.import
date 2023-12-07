@@ -2,18 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-
-uid="uid://vy1bqvsqvvkp"
-
-path="res://.godot/imported/villain_attack.png-532abe393757900efe6440877150e622.ctex"
+uid="uid://dqnyn8v0lpj6l"
+path="res://.godot/imported/Healing cooldown.png-cae88bf08d94448261702f727d325b11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/villain_attack.png"
-dest_files=["res://.godot/imported/villain_attack.png-532abe393757900efe6440877150e622.ctex"]
+source_file="res://ui/Healing cooldown.png"
+dest_files=["res://.godot/imported/Healing cooldown.png-cae88bf08d94448261702f727d325b11.ctex"]
 
 [params]
 
