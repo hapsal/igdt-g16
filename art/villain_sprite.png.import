@@ -2,18 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-
-uid="uid://dqev57335lqnn"
-
-path="res://.godot/imported/pumpkin_sprite.png-c1468b31bb336dae5b39de53b4c23f80.ctex"
+uid="uid://cnm3b8e6kiycu"
+path="res://.godot/imported/villain_sprite.png-1e969f6f27f284e9cc826d1bd67dca4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pumpkin_sprite.png"
-dest_files=["res://.godot/imported/pumpkin_sprite.png-c1468b31bb336dae5b39de53b4c23f80.ctex"]
+source_file="res://art/villain_sprite.png"
+dest_files=["res://.godot/imported/villain_sprite.png-1e969f6f27f284e9cc826d1bd67dca4a.ctex"]
 
 [params]
 

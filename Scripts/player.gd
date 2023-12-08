@@ -9,6 +9,11 @@ var player_alive = true
 var attack_in_progress = false
 var last_input = null
 
+
+signal new_player_level(level)
+
+var death_sound = true
+
 #Player status variables
 var health = 100
 var experience = 0
@@ -27,31 +32,36 @@ var anim_sprite: AnimatedSprite2D  # Reference to the AnimatedSprite2D node
 
 func _ready():
 	anim_sprite = $AnimatedSprite2D # Get a reference to the AnimatedSprite2D node
-	anim_sprite.play("front_walk") 
+	anim_sprite.play("front_walk")
 
 
 func _physics_process(delta):
 
 	if(helaing_cooldown):
-		$Camera2D/HealingCooldown.value = progress+$healing_cooldown.time_left
+		$Camera2D/CanvasLayer/UI/status/HealingCooldown.value = progress+$healing_cooldown.time_left
 	else:
-		$Camera2D/HealingCooldown.value = 0
+		$Camera2D/CanvasLayer/UI/status/HealingCooldown.value = 0
 	if(player_alive):
 		if(attack_in_progress):
 			attack_movement(delta)
 		else:
 			player_movement(delta) 
 
-	else:
-		anim_sprite.play("death_animation") 
 	enemy_attack()
 	set_player_status()
 	
 	if health <= 0:
 		player_alive = false  # Player dies from too much damage
 		health = 0
+		if(death_sound):
+			$DeathSound.play()
+			death_sound = false
+		anim_sprite.play("death_animation")
+		await get_tree().create_timer(2).timeout
+		get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
 		print("Game over, you died!")
 		#self.queue_free()
+		
 	
 func player_movement(delta):
 	# Reset the velocity vector before checking input
@@ -154,7 +164,7 @@ func player():
 	pass
 
 func enemy_attack():
-	if enemy_in_attack_range and enemy_attack_cooldown == true:
+	if enemy_in_attack_range and enemy_attack_cooldown and player_alive == true:
 		var attackPower = 10
 		spawn_dmgIndicator(attackPower)
 		health = health - attackPower
@@ -162,6 +172,7 @@ func enemy_attack():
 		enemy_attack_cooldown = false
 		$attack_cooldown.start() 
 		print("player health is ", health)
+
 
 func _on_attack_cooldown_timeout(): 
 	enemy_attack_cooldown = true
@@ -190,17 +201,22 @@ func spawn_dmgIndicator(damage: int):
 	if indicator:
 		indicator.label_node.text = "- " + str(damage)
 
+func spawn_healingIndicator(healing: int):
+	var INDICATOR_DAMAGE = preload("res://ui/healing_indicator.tscn")
+	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(150, -40))
+	if indicator:
+		indicator.label_node.text = "+ " + str(healing)
 
 func get_exp(amount):
 	experience += amount
-	health = 100
 	
 func get_gold(amount):
 	gold += amount
 	
 func heal():
 		health += 10*level
-		$healing_cooldown.start() 
+		spawn_healingIndicator(10*level)
+		$healing_cooldown.start()
 		helaing_cooldown = true
 		if(health>100):
 			health = 100
@@ -208,6 +224,7 @@ func heal():
 func check_xp():
 	if(experience>=maxxp):
 		level += 1
+		new_player_level.emit(level)
 		experience = experience-maxxp
 
 

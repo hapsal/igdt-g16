@@ -2,18 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-
-uid="uid://dqev57335lqnn"
-
-path="res://.godot/imported/pumpkin_sprite.png-c1468b31bb336dae5b39de53b4c23f80.ctex"
+uid="uid://dqnyn8v0lpj6l"
+path="res://.godot/imported/Healing cooldown.png-cae88bf08d94448261702f727d325b11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pumpkin_sprite.png"
-dest_files=["res://.godot/imported/pumpkin_sprite.png-c1468b31bb336dae5b39de53b4c23f80.ctex"]
+source_file="res://ui/Healing cooldown.png"
+dest_files=["res://.godot/imported/Healing cooldown.png-cae88bf08d94448261702f727d325b11.ctex"]
 
 [params]
 

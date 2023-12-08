@@ -2,18 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-
-uid="uid://dqev57335lqnn"
-
-path="res://.godot/imported/pumpkin_sprite.png-c1468b31bb336dae5b39de53b4c23f80.ctex"
+uid="uid://bc2c6uxpompc6"
+path="res://.godot/imported/villain_death.png-821173c551412edc643eb2c5b481a267.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pumpkin_sprite.png"
-dest_files=["res://.godot/imported/pumpkin_sprite.png-c1468b31bb336dae5b39de53b4c23f80.ctex"]
+source_file="res://art/villain_death.png"
+dest_files=["res://.godot/imported/villain_death.png-821173c551412edc643eb2c5b481a267.ctex"]
 
 [params]
 

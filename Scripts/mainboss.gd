@@ -61,6 +61,7 @@ func deal_with_damage():
 			print("witch health is ", health)
 			set_health_label()
 			if health <= 0: 
+				$AnimatedSprite2D.play("death")
 				give_experience()
 				give_gold()
 				self.queue_free()

@@ -1,10 +1,16 @@
+
 [gd_scene load_steps=7 format=3 uid="uid://cy0tytgbep4mh"]
 
+
 [ext_resource type="Script" path="res://scenes/globalControl.gd" id="1_sov1f"]
-[ext_resource type="Texture2D" uid="uid://c0wqcxsqi821v" path="res://art/map.png" id="2_48nip"]
+[ext_resource type="Texture2D" uid="uid://bem80amf0wnhs" path="res://art/enemy_map.png" id="2_c64vn"]
+[ext_resource type="Texture2D" uid="uid://dram2yw4q7ndj" path="res://art/village_map.png" id="3_tr6qg"]
 [ext_resource type="PackedScene" uid="uid://t0dfpbn1qwws" path="res://scenes/enemy.tscn" id="5_idkly"]
+[ext_resource type="PackedScene" uid="uid://bokboxq8corst" path="res://scenes/enemy_2.tscn" id="7_g01sh"]
 [ext_resource type="PackedScene" uid="uid://b72s2ywpxk7mo" path="res://scenes/player.tscn" id="7_gf4sa"]
+[ext_resource type="PackedScene" uid="uid://dhm7lq8b4c80m" path="res://scenes/npc3.tscn" id="9_8lpdk"]
 [ext_resource type="PackedScene" uid="uid://c6otn162ksfrl" path="res://scenes/npc.tscn" id="9_c2dxo"]
+[ext_resource type="PackedScene" uid="uid://dukqyqxy3yqbi" path="res://scenes/npc2.tscn" id="10_s3rft"]
 [ext_resource type="AudioStream" uid="uid://cga621vleo8wd" path="res://assets/audio/music/CalmAmbient.wav" id="11_57pqb"]
 
 [node name="MapView" type="Control"]
@@ -20,47 +26,25 @@ script = ExtResource("1_sov1f")
 
 [node name="map" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="map"]
-position = Vector2(502, 278)
-texture = ExtResource("2_48nip")
-
 [node name="Sprite2D2" type="Sprite2D" parent="map"]
 z_index = -1
-position = Vector2(-722, 280)
-texture = ExtResource("2_48nip")
-flip_h = true
+position = Vector2(6701, 641)
+texture = ExtResource("2_c64vn")
 
 [node name="Sprite2D3" type="Sprite2D" parent="map"]
 z_index = -1
-position = Vector2(501, 1257)
+position = Vector2(1467, -413)
 rotation = -3.14159
-texture = ExtResource("2_48nip")
+texture = ExtResource("3_tr6qg")
 flip_h = true
-
-[node name="Sprite2D4" type="Sprite2D" parent="map"]
-z_index = -1
-position = Vector2(-730, 1258)
-rotation = 3.14159
-texture = ExtResource("2_48nip")
-
-[node name="Sprite2D5" type="Sprite2D" parent="map"]
-z_index = -1
-position = Vector2(2001, 278)
-texture = ExtResource("2_48nip")
-flip_h = true
-
-[node name="Sprite2D6" type="Sprite2D" parent="map"]
-z_index = -1
-position = Vector2(1993, 1256)
-rotation = 3.14159
-texture = ExtResource("2_48nip")
+flip_v = true
 
 [node name="Player" parent="." instance=ExtResource("7_gf4sa")]
 z_index = 4
-position = Vector2(1654, 287)
+position = Vector2(607, -622)
 
 [node name="NPC" parent="." instance=ExtResource("9_c2dxo")]
-position = Vector2(-96, 298)
+position = Vector2(-25, -235)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_57pqb")
@@ -69,13 +53,26 @@ autoplay = true
 bus = &"Music"
 
 [node name="enemy" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
-position = Vector2(491, 799)
+position = Vector2(3407, -86)
 
-[node name="enemy2" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
-position = Vector2(1776, 1229)
+[node name="enemy2" parent="." groups=["Enemies"] instance=ExtResource("7_g01sh")]
+position = Vector2(4173, 1020)
+
+[node name="enemy3" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
+position = Vector2(4049, -64)
+
+[node name="NPC2" parent="." instance=ExtResource("9_8lpdk")]
+position = Vector2(1521, -189)
+
+[node name="NPC3" parent="." instance=ExtResource("10_s3rft")]
+position = Vector2(614, -98)
 
 [connection signal="get_exp" from="." to="Player" method="_on_map_view_get_exp"]
+[connection signal="new_player_level" from="Player" to="." method="_on_player_new_player_level"]
 [connection signal="drop_exp" from="enemy" to="." method="_on_enemy_drop_exp"]
 [connection signal="drop_gold" from="enemy" to="." method="_on_enemy_drop_gold"]
 [connection signal="drop_exp" from="enemy2" to="." method="_on_enemy_drop_exp"]
 [connection signal="drop_gold" from="enemy2" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy3" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy3" to="." method="_on_enemy_drop_gold"]
+
