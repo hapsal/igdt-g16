@@ -1,9 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://cs8y3i3mcmg56"]
+[gd_scene load_steps=44 format=3 uid="uid://cs8y3i3mcmg56"]
 
-[ext_resource type="Texture2D" uid="uid://unmajmhdtshe" path="res://art/villain_attack.png" id="1_1s5fd"]
+[ext_resource type="Texture2D" uid="uid://vy1bqvsqvvkp" path="res://art/villain_attack.png" id="1_1s5fd"]
 [ext_resource type="Script" path="res://Scripts/mainboss.gd" id="1_fes8g"]
-[ext_resource type="Texture2D" uid="uid://cvo640psdkm1e" path="res://art/villain_sprite.png" id="2_vpamk"]
-[ext_resource type="Texture2D" uid="uid://dfacka1rytvu4" path="res://art/villain_death.png" id="3_sjq14"]
+[ext_resource type="Texture2D" uid="uid://cnm3b8e6kiycu" path="res://art/villain_sprite.png" id="2_vpamk"]
+[ext_resource type="Texture2D" uid="uid://bc2c6uxpompc6" path="res://art/villain_death.png" id="3_sjq14"]
+[ext_resource type="AudioStream" uid="uid://do7m1vwtru8xy" path="res://assets/audio/sfx/monster-howl-85304.mp3" id="5_3torb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_an604"]
 atlas = ExtResource("1_1s5fd")
@@ -178,16 +179,16 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wlpni")
 }, {
-"duration": 1.0,
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_8juox")
 }, {
-"duration": 1.0,
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_kjdls")
 }, {
-"duration": 1.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_maf42")
 }, {
-"duration": 1.0,
+"duration": 10.0,
 "texture": SubResource("AtlasTexture_56c6u")
 }],
 "loop": true,
@@ -297,13 +298,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f25m8"]
-radius = 466.725
+radius = 224.009
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sbuse"]
-radius = 221.0
+radius = 119.105
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_xhktt"]
-b = Vector2(0, 122)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y58id"]
+radius = 62.0
+height = 180.0
 
 [node name="mainboss" type="CharacterBody2D"]
 position = Vector2(125.486, 127.677)
@@ -311,37 +313,41 @@ script = ExtResource("1_fes8g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ro5ly")
-animation = &"back_attack"
-frame_progress = 0.713156
+animation = &"idle"
+frame_progress = 0.0503532
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-13.4864, 6.32324)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(17, 2.00002)
+position = Vector2(21.0004, -4.00024)
 shape = SubResource("CircleShape2D_f25m8")
 
 [node name="enemy_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
-position = Vector2(-2.486, 5.323)
+position = Vector2(7.514, 3.323)
 shape = SubResource("CircleShape2D_sbuse")
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="HealthLabel" type="ProgressBar" parent="."]
-modulate = Color(0.988235, 0, 0, 1)
+modulate = Color(0.835294, 0, 0.898039, 1)
 offset_left = -82.486
 offset_top = -131.677
 offset_right = 76.514
 offset_bottom = -110.677
+max_value = 300.0
 step = 1.0
 show_percentage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4.486, -64.677)
-shape = SubResource("SegmentShape2D_xhktt")
+position = Vector2(4.514, 2.323)
+shape = SubResource("CapsuleShape2D_y58id")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_3torb")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered" flags=18]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited" flags=18]

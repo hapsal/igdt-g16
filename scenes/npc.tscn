@@ -17,6 +17,7 @@ texture = ExtResource("2_bpnd4")
 shape = SubResource("CircleShape2D_3nitl")
 
 [node name="Indicator" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-1, -115)
 scale = Vector2(0.40625, 0.40625)
 texture = ExtResource("3_c2v6y")

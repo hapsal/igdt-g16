@@ -1,13 +1,17 @@
 extends CharacterBody2D
 
-var speed = 130
+var speed = 150
 var player_chase = false
 var player = null
-var health = 100
+var health = 1000
 var player_in_attack_zone = false
 var can_take_damage = true
 var combat_system
 var player_level = 1
+var death = false
+
+var attackAnimation = false
+var attackDirection = "front_attack"
 
 signal drop_exp(amount)
 signal drop_gold(amount)
@@ -18,38 +22,54 @@ func _ready():
 	
 
 func _physics_process(_delta):
-	deal_with_damage()
-	
-	if player_chase:
-		var direction_to_player = player.position - position
-		var x_difference = abs(direction_to_player.x)
-		var y_difference = abs(direction_to_player.y)
-
-		if x_difference > y_difference:
-			if direction_to_player.x < 0:
-				$AnimatedSprite2D.play("left_walk")
-			else:
-				$AnimatedSprite2D.play("right_walk")
-		else:
-			if direction_to_player.y < 0:
-				$AnimatedSprite2D.play("back_walk")
-			else:
-				$AnimatedSprite2D.play("front_walk")
-		position += direction_to_player.normalized() * speed * _delta
+	if death:
+		$AnimatedSprite2D.play("death")
+		await get_tree().create_timer(4).timeout
+		get_tree().change_scene_to_file("res://scenes/VictoryScreen.tscn")
 	else:
-		$AnimatedSprite2D.play("idle")
+		deal_with_damage()
+		if player_in_attack_zone:
+			$AnimatedSprite2D.play(attackDirection)
+		elif player_chase:
+			var direction_to_player = player.position - position
+			var x_difference = abs(direction_to_player.x)
+			var y_difference = abs(direction_to_player.y)
+
+			if x_difference > y_difference:
+				if direction_to_player.x < 0:
+					$AnimatedSprite2D.play("left_walk")
+					attackDirection = "left_attack"
+				else:
+					$AnimatedSprite2D.play("right_walk")
+					attackDirection = "right_attack"
+			else:
+				if direction_to_player.y < 0:
+					$AnimatedSprite2D.play("back_walk")
+					attackDirection = "front_attack"
+				else:
+					$AnimatedSprite2D.play("front_walk")
+					attackDirection = "front_attack"
+			position += direction_to_player.normalized() * speed * _delta
+		else:
+			$AnimatedSprite2D.play("idle")
 
 
 func _on_detection_area_body_entered(body):
 	player = body
-	player_chase = true
+	if body.has_method("player"):
+		player_chase = true
 
 func _on_detection_area_body_exited(body):
 	player = null
-	player_chase = false
+	if body.has_method("player"):
+		player_chase = false
 	
 func enemy():
 	pass
+
+func boss():
+	pass
+
 
 func deal_with_damage():
 	if player_in_attack_zone and Global.player_current_attack == true:
@@ -61,14 +81,15 @@ func deal_with_damage():
 			print("witch health is ", health)
 			set_health_label()
 			if health <= 0: 
-				$AnimatedSprite2D.play("death")
+				$Death.play()
+				death = true
 				give_experience()
 				give_gold()
-				self.queue_free()
 
 func _on_enemy_hitbox_body_entered(body):
 	if body.has_method("player"):
 		player_in_attack_zone = true
+		
 
 func _on_enemy_hitbox_body_exited(body):
 	if body.has_method("player"):
@@ -106,5 +127,7 @@ func set_player_level():
 	player_level +=1
 
 
-func _on_enemy_2_drop_exp(amount):
-	pass # Replace with function body.
+
+
+
+	

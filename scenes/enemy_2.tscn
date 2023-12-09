@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bokboxq8corst"]
+[gd_scene load_steps=16 format=3 uid="uid://bokboxq8corst"]
 
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_ld3w8"]
+[ext_resource type="Script" path="res://Scripts/enemy_2.gd" id="1_bglua"]
 [ext_resource type="Texture2D" uid="uid://mp650fg2nfn3" path="res://art/ghost_back.png" id="2_m676v"]
 [ext_resource type="Texture2D" uid="uid://b376sxwjoss2u" path="res://art/ghost_front.png" id="3_vbgdy"]
 [ext_resource type="Texture2D" uid="uid://cs751xb0ltf14" path="res://art/ghost_left.png" id="4_sdf2n"]
+[ext_resource type="Texture2D" uid="uid://di78hj1g8rj7u" path="res://art/ghost_left_attack2.png" id="4_uy6ce"]
+[ext_resource type="Texture2D" uid="uid://ggknw8i8v247" path="res://art/ghost_right_attack1.png" id="5_25yuc"]
 [ext_resource type="Texture2D" uid="uid://ebmbisr77jts" path="res://art/ghost_right.png" id="5_fi1vh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ey6px"]
@@ -26,10 +28,44 @@ region = Rect2(0, 0, 50, 50)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_sdf2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uy6ce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_25yuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fi1vh")
+}],
+"loop": true,
+"name": &"back_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ey6px")
 }],
 "loop": true,
 "name": &"back_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sdf2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uy6ce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fi1vh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_25yuc")
+}],
+"loop": true,
+"name": &"front_attack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -50,10 +86,44 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_sdf2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uy6ce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_25yuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fi1vh")
+}],
+"loop": true,
+"name": &"left_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_e2co6")
 }],
 "loop": true,
 "name": &"left_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sdf2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uy6ce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_25yuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fi1vh")
+}],
+"loop": true,
+"name": &"right_attack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -66,7 +136,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f25m8"]
-radius = 220.635
+radius = 221.02
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eas33"]
 radius = 25.4951
@@ -76,18 +146,18 @@ radius = 70.8012
 
 [node name="enemy2" type="CharacterBody2D"]
 position = Vector2(125.486, 127.677)
-script = ExtResource("1_ld3w8")
+script = ExtResource("1_bglua")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_rkkd7")
-animation = &"idle"
+animation = &"left_attack"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-13.4864, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(17, 0)
+position = Vector2(11.0004, 8.323)
 shape = SubResource("CircleShape2D_f25m8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -111,6 +181,7 @@ offset_left = -78.486
 offset_top = -68.677
 offset_right = 80.514
 offset_bottom = -47.677
+max_value = 200.0
 step = 1.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true

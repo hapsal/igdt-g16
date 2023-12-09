@@ -8,6 +8,7 @@ var player_in_attack_zone = false
 var can_take_damage = true
 var combat_system
 var player_level = 1
+var attacking = false
 
 signal drop_exp(amount)
 signal drop_gold(amount)
@@ -20,7 +21,9 @@ func _ready():
 func _physics_process(_delta):
 	deal_with_damage()
 	
-	if player_chase:
+	if player_in_attack_zone:
+		spawn_fire()
+	elif player_chase and player != null:
 		var direction_to_player = player.position - position
 		var x_difference = abs(direction_to_player.x)
 		var y_difference = abs(direction_to_player.y)
@@ -42,11 +45,13 @@ func _physics_process(_delta):
 
 func _on_detection_area_body_entered(body):
 	player = body
-	player_chase = true
+	if body.has_method("player"):
+		player_chase = true
 
 func _on_detection_area_body_exited(body):
 	player = null
-	player_chase = false
+	if body.has_method("player"):
+		player_chase = false
 	
 func enemy():
 	pass
@@ -91,7 +96,12 @@ func spawn_dmgIndicator(damage: int):
 	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(60, -40))
 	if indicator:
 		indicator.label_node.text = "- " + str(damage)
-		
+
+func spawn_fire():
+	var INDICATOR_DAMAGE = preload("res://ui/fire.tscn")
+	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(-50, 50))
+	
+
 func set_health_label() -> void:
 	$HealthLabel.value = health
 	

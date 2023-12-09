@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 # Combat system variables
 var enemy_in_attack_range = false
+var boss_in_attack_range = false
 var enemy_attack_cooldown = true
 var helaing_cooldown = false
 
@@ -153,10 +154,14 @@ func set_level():
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		enemy_in_attack_range = true
-
+	if body.has_method("boss"):
+		boss_in_attack_range = true
+		
 func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy"):
 		enemy_in_attack_range = false
+	if body.has_method("boss"):
+		boss_in_attack_range = false
 
 
 
@@ -166,6 +171,8 @@ func player():
 func enemy_attack():
 	if enemy_in_attack_range and enemy_attack_cooldown and player_alive == true:
 		var attackPower = 10
+		if(boss_in_attack_range):
+			attackPower = 30
 		spawn_dmgIndicator(attackPower)
 		health = health - attackPower
 		$DamageSound.play()
@@ -199,7 +206,19 @@ func spawn_dmgIndicator(damage: int):
 	var INDICATOR_DAMAGE = preload("res://ui/damage_indicator.tscn")
 	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(150, -40))
 	if indicator:
-		indicator.label_node.text = "- " + str(damage)
+		indicator.label_node.text =  "- " + str(damage)
+
+func spawn_goldIndicator(damage: int):
+	var INDICATOR_DAMAGE = preload("res://ui/gold_indicator.tscn")
+	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(150, -40))
+	if indicator:
+		indicator.label_node.text = str(damage) + " GOLD"
+		
+func spawn_xpIndicator(damage: int):
+	var INDICATOR_DAMAGE = preload("res://ui/xp_indicator.tscn")
+	var indicator = spawn_effect(INDICATOR_DAMAGE, global_position, Vector2(150, -40))
+	if indicator:
+		indicator.label_node.text = str(damage) + " XP"
 
 func spawn_healingIndicator(healing: int):
 	var INDICATOR_DAMAGE = preload("res://ui/healing_indicator.tscn")
@@ -208,9 +227,11 @@ func spawn_healingIndicator(healing: int):
 		indicator.label_node.text = "+ " + str(healing)
 
 func get_exp(amount):
+	spawn_xpIndicator(amount)
 	experience += amount
 	
 func get_gold(amount):
+	spawn_goldIndicator(amount)
 	gold += amount
 	
 func heal():

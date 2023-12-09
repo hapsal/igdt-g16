@@ -16,9 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://bfkf7hw3t6bow" path="res://assets/audio/sfx/player_deathv2.wav" id="13_7rek6"]
 [ext_resource type="Script" path="res://scenes/SwordSwing.gd" id="13_t5rj4"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hsahm"]
-radius = 34.0
-height = 68.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qh63b"]
+radius = 27.0
+height = 96.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otlya"]
 atlas = ExtResource("2_p52q2")
@@ -293,7 +293,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxbv0"]
-radius = 167.122
+radius = 225.26
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(444, 233)
@@ -302,7 +302,7 @@ script = ExtResource("1_sx357")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(133, 82)
-shape = SubResource("CapsuleShape2D_hsahm")
+shape = SubResource("CapsuleShape2D_qh63b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(134, 81)
@@ -342,8 +342,8 @@ grow_vertical = 2
 layout_mode = 1
 offset_left = 7.0
 offset_top = 6.0
-offset_right = 108.0
-offset_bottom = 106.0
+offset_right = 75.0
+offset_bottom = 73.0
 scale = Vector2(1.51519, 1.51519)
 texture_normal = ExtResource("6_42vuf")
 ignore_texture_size = true
@@ -351,10 +351,10 @@ stretch_mode = 0
 
 [node name="Label" type="Label" parent="Camera2D/CanvasLayer/UI/Levelup"]
 layout_mode = 0
-offset_left = 40.919
-offset_top = 36.2991
-offset_right = 55.919
-offset_bottom = 75.2991
+offset_left = 25.0794
+offset_top = 18.4795
+offset_right = 40.0794
+offset_bottom = 57.4795
 theme_override_font_sizes/font_size = 26
 text = "1
 "
@@ -403,8 +403,8 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -83.0
-offset_right = 68.0
-offset_bottom = 128.0
+offset_right = 6.0
+offset_bottom = 75.0
 grow_horizontal = 2
 scale = Vector2(1.1897, 1.1897)
 
@@ -429,10 +429,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -174.0
-offset_top = -53.0
-offset_right = 103.0
-offset_bottom = -23.0
+offset_left = -92.0
+offset_top = -38.0
+offset_right = 75.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.1897, 1.1897)

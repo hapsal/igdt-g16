@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy0tytgbep4mh"]
+[gd_scene load_steps=16 format=3 uid="uid://cy0tytgbep4mh"]
 
 [ext_resource type="Script" path="res://scenes/globalControl.gd" id="1_sov1f"]
 [ext_resource type="Texture2D" uid="uid://bem80amf0wnhs" path="res://art/enemy_map.png" id="2_c64vn"]
@@ -6,14 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://t0dfpbn1qwws" path="res://scenes/enemy.tscn" id="5_idkly"]
 [ext_resource type="PackedScene" uid="uid://bokboxq8corst" path="res://scenes/enemy_2.tscn" id="7_g01sh"]
 [ext_resource type="PackedScene" uid="uid://b72s2ywpxk7mo" path="res://scenes/player.tscn" id="7_gf4sa"]
-[ext_resource type="PackedScene" path="res://scenes/npc3.tscn" id="9_8lpdk"]
+[ext_resource type="PackedScene" uid="uid://dhm7lq8b4c80m" path="res://scenes/npc3.tscn" id="9_8lpdk"]
 [ext_resource type="PackedScene" uid="uid://c6otn162ksfrl" path="res://scenes/npc.tscn" id="9_c2dxo"]
-[ext_resource type="PackedScene" path="res://scenes/npc2.tscn" id="10_s3rft"]
+[ext_resource type="Script" path="res://Scripts/NPC2.gd" id="10_1mrvs"]
+[ext_resource type="PackedScene" uid="uid://dukqyqxy3yqbi" path="res://scenes/npc2.tscn" id="10_s3rft"]
 [ext_resource type="AudioStream" uid="uid://cga621vleo8wd" path="res://assets/audio/music/CalmAmbient.wav" id="11_57pqb"]
+[ext_resource type="PackedScene" uid="uid://cs8y3i3mcmg56" path="res://scenes/mainboss.tscn" id="12_xusru"]
+[ext_resource type="PackedScene" uid="uid://crvxipfbkc7t" path="res://scenes/npc4.tscn" id="13_w0gls"]
+[ext_resource type="PackedScene" uid="uid://chwkhkv0faeg2" path="res://scenes/enemy_3.tscn" id="13_x7s8q"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_70jie"]
-radius = 45.0
-height = 186.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok80v"]
+size = Vector2(171, 175)
 
 [node name="MapView" type="Control"]
 layout_mode = 3
@@ -44,9 +47,9 @@ flip_v = true
 [node name="StaticBody2D" type="StaticBody2D" parent="map"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map/StaticBody2D"]
-position = Vector2(756, -83)
+position = Vector2(754.5, -142.5)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_70jie")
+shape = SubResource("RectangleShape2D_ok80v")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map/StaticBody2D"]
 polygon = PackedVector2Array(3517, 434, 3525, 49, 3468, 46, 3465, -1, 3432, 15, 3418, 37, 3418, 313, -469, 325, -466, -142, -129, -142, -95, -163, -95, -289, 50, -289, 52, -187, 62, -158, 285, -149, 323, -184, 335, -477, 357, -544, 423, -558, 656, -560, 663, -636, 820, -639, 823, -565, 842, -548, 1132, -546, 1137, -513, 1151, -467, 1160, -227, 1168, -187, 1218, -158, 1287, -153, 1434, -151, 1446, -251, 1600, -256, 1600, -158, 1717, -151, 2007, -146, 2050, -163, 2050, -222, 2048, -251, 2107, -263, 2174, -263, 2200, -261, 2226, -215, 2216, -168, 2238, -151, 2699, -146, 2697, -244, 2868, -237, 2882, -161, 3425, -153, 3448, -125, 3468, -120, 3472, -170, 3472, -1236, -538, -1250, -533, 436)
@@ -56,10 +59,7 @@ polygon = PackedVector2Array(3451, 438, 3449, 1892, 9431, 1890, 9949, 1896, 9954
 
 [node name="Player" parent="." instance=ExtResource("7_gf4sa")]
 z_index = 4
-position = Vector2(607, -622)
-
-[node name="NPC" parent="." instance=ExtResource("9_c2dxo")]
-position = Vector2(-25, -235)
+position = Vector2(617, -615)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_57pqb")
@@ -67,20 +67,91 @@ volume_db = -8.0
 autoplay = true
 bus = &"Music"
 
-[node name="enemy" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
-position = Vector2(3407, -86)
-
-[node name="enemy2" parent="." groups=["Enemies"] instance=ExtResource("7_g01sh")]
-position = Vector2(4173, 1020)
-
-[node name="enemy3" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
-position = Vector2(4049, -64)
+[node name="NPC" parent="." instance=ExtResource("9_c2dxo")]
+position = Vector2(-18, -226)
 
 [node name="NPC2" parent="." instance=ExtResource("9_8lpdk")]
 position = Vector2(1521, -189)
+script = ExtResource("10_1mrvs")
 
 [node name="NPC3" parent="." instance=ExtResource("10_s3rft")]
-position = Vector2(614, -98)
+position = Vector2(566, -99)
+script = ExtResource("10_1mrvs")
+
+[node name="NPC4" parent="." instance=ExtResource("13_w0gls")]
+position = Vector2(7152, 1424)
+
+[node name="enemy" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
+position = Vector2(5834, -39)
+
+[node name="enemy2" parent="." groups=["Enemies"] instance=ExtResource("7_g01sh")]
+position = Vector2(5212, 463)
+
+[node name="enemy3" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
+position = Vector2(3701, 1576)
+
+[node name="mainboss" parent="." groups=["Enemies"] instance=ExtResource("12_xusru")]
+position = Vector2(9156, 166)
+
+[node name="enemy4" parent="." groups=["Enemies"] instance=ExtResource("7_g01sh")]
+position = Vector2(8648.49, 1148.68)
+
+[node name="enemy5" parent="." groups=["Enemies"] instance=ExtResource("7_g01sh")]
+position = Vector2(7994.49, 646.677)
+
+[node name="enemy6" parent="." groups=["Enemies"] instance=ExtResource("7_g01sh")]
+position = Vector2(9633.49, 1088.68)
+
+[node name="enemy_3" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
+position = Vector2(3434, -73)
+
+[node name="enemy_4" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
+position = Vector2(2787.49, -175.323)
+
+[node name="enemy_5" parent="." instance=ExtResource("13_x7s8q")]
+position = Vector2(2461.49, 160.677)
+
+[node name="enemy_6" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
+position = Vector2(4592.49, -54.323)
+
+[node name="enemy_7" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
+position = Vector2(3698.49, 739.677)
+
+[node name="enemy_8" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
+position = Vector2(4107.49, 245.677)
+
+[node name="enemy7" parent="." groups=["Enemies"] instance=ExtResource("7_g01sh")]
+position = Vector2(6509.49, 1444.68)
+
+[node name="enemy8" parent="." groups=["Enemies"] instance=ExtResource("7_g01sh")]
+position = Vector2(6442.49, 465.677)
+
+[node name="enemy9" parent="." groups=["Enemies"] instance=ExtResource("7_g01sh")]
+position = Vector2(5342.49, 1561.68)
+
+[node name="enemy_9" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
+position = Vector2(4228.49, 1601.68)
+
+[node name="enemy_10" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
+position = Vector2(4780.49, 1574.68)
+
+[node name="enemy_11" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
+position = Vector2(4237.49, 1076.68)
+
+[node name="enemy_12" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
+position = Vector2(5072.49, 1090.68)
+
+[node name="enemy10" parent="." groups=["Enemies"] instance=ExtResource("7_g01sh")]
+position = Vector2(5234.49, -5.323)
+
+[node name="enemy11" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
+position = Vector2(5746.49, 766.677)
+
+[node name="enemy12" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
+position = Vector2(4551, 542)
+
+[node name="enemy13" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
+position = Vector2(5943.49, 1458.68)
 
 [connection signal="get_exp" from="." to="Player" method="_on_map_view_get_exp"]
 [connection signal="new_player_level" from="Player" to="." method="_on_player_new_player_level"]
@@ -90,3 +161,45 @@ position = Vector2(614, -98)
 [connection signal="drop_gold" from="enemy2" to="." method="_on_enemy_drop_gold"]
 [connection signal="drop_exp" from="enemy3" to="." method="_on_enemy_drop_exp"]
 [connection signal="drop_gold" from="enemy3" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="mainboss" to="." method="_on_mainboss_drop_exp"]
+[connection signal="drop_gold" from="mainboss" to="." method="_on_mainboss_drop_gold"]
+[connection signal="drop_exp" from="enemy4" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy4" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy5" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy5" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy6" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy6" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy_3" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy_3" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy_4" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy_4" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy_5" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy_5" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy_6" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy_6" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy_7" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy_7" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy_8" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy_8" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy7" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy7" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy8" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy8" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy9" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy9" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy_9" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy_9" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy_10" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy_10" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy_11" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy_11" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy_12" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy_12" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy10" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy10" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy11" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy11" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy12" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy12" to="." method="_on_enemy_drop_gold"]
+[connection signal="drop_exp" from="enemy13" to="." method="_on_enemy_drop_exp"]
+[connection signal="drop_gold" from="enemy13" to="." method="_on_enemy_drop_gold"]

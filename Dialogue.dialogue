@@ -1,11 +1,11 @@
 ~ start
 
-NPC: [[Hi|Hello|Howdy]], traveler, nice to meet you. The enemy lies right of our location.
+Jack: Hi traveler, nice to meet you. The enemy lies right of our location.
 - I will gather strength first.
-	NPC: I understandt!.
+	Jack: I understand!
 - (Leave without saying anything)
-	NPC: Ehm, okay see you I guess. 
+	Jack: Ehm, okay see you I guess. 
 - Im going to defeat him! 
-	NPC: Good luck to you traveler!
+	Jack: Good luck to you traveler!
 
 => END

@@ -1,8 +1,8 @@
 [gd_scene load_steps=41 format=3 uid="uid://chwkhkv0faeg2"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_3.gd" id="1_8c4i3"]
-[ext_resource type="Texture2D" uid="uid://cdnbdwn7hm4mp" path="res://art/pumpkin_attack_sprite.png" id="2_w0k50"]
-[ext_resource type="Texture2D" uid="uid://c4lh3snoqi78v" path="res://art/pumpkin_sprite.png" id="3_66gvp"]
+[ext_resource type="Texture2D" uid="uid://brn6ap8ouqjdh" path="res://art/pumpkin_attack_sprite.png" id="2_w0k50"]
+[ext_resource type="Texture2D" uid="uid://dqev57335lqnn" path="res://art/pumpkin_sprite.png" id="3_66gvp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swjv6"]
 atlas = ExtResource("2_w0k50")
@@ -284,13 +284,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f25m8"]
-radius = 466.725
+radius = 221.082
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sbuse"]
-radius = 221.0
+radius = 162.049
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_xhktt"]
-b = Vector2(0, 122)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ac3c8"]
+radius = 51.0
 
 [node name="enemy_3" type="CharacterBody2D"]
 position = Vector2(125.486, 127.677)
@@ -298,7 +298,7 @@ script = ExtResource("1_8c4i3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bsb4b")
-animation = &"idle"
+animation = &"back_attack"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-13.4864, 6.32324)
@@ -326,8 +326,8 @@ step = 1.0
 show_percentage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4.486, -64.677)
-shape = SubResource("SegmentShape2D_xhktt")
+position = Vector2(-1.486, 1.323)
+shape = SubResource("CircleShape2D_ac3c8")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered" flags=18]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited" flags=18]

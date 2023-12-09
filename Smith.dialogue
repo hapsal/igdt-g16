@@ -1,0 +1,9 @@
+~ start
+
+Natalie: [[Hi|Hello|Howdy]], there customer!
+- I need to buy a stronger sword (300 gold)!
+	Natalie: You don't seem to have enough gold yet.
+- I don't need your services right now
+	Natalie: Okay, see you next time!
+
+=> END

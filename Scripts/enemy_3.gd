@@ -1,12 +1,17 @@
 extends CharacterBody2D
 
-var speed = 150
+var speed = 130
 var player_chase = false
 var player = null
 var health = 100
 var player_in_attack_zone = false
 var can_take_damage = true
 var combat_system
+var player_level = 1
+
+
+var attackAnimation = false
+var attackDirection = "front_attack"
 
 signal drop_exp(amount)
 signal drop_gold(amount)
@@ -17,35 +22,42 @@ func _ready():
 	
 
 func _physics_process(_delta):
-	deal_with_damage()
-	
-	if player_chase:
-		var direction_to_player = player.position - position
-		var x_difference = abs(direction_to_player.x)
-		var y_difference = abs(direction_to_player.y)
+		deal_with_damage()
+		if player_in_attack_zone:
+			$AnimatedSprite2D.play(attackDirection)
+		elif player_chase:
+			var direction_to_player = player.position - position
+			var x_difference = abs(direction_to_player.x)
+			var y_difference = abs(direction_to_player.y)
 
-		if x_difference > y_difference:
-			if direction_to_player.x < 0:
-				$AnimatedSprite2D.play("left_walk")
+			if x_difference > y_difference:
+				if direction_to_player.x < 0:
+					$AnimatedSprite2D.play("left_walk")
+					attackDirection = "left_attack"
+				else:
+					$AnimatedSprite2D.play("right_walk")
+					attackDirection = "right_attack"
 			else:
-				$AnimatedSprite2D.play("right_walk")
+				if direction_to_player.y < 0:
+					$AnimatedSprite2D.play("back_walk")
+					attackDirection = "front_attack"
+				else:
+					$AnimatedSprite2D.play("front_walk")
+					attackDirection = "front_attack"
+			position += direction_to_player.normalized() * speed * _delta
 		else:
-			if direction_to_player.y < 0:
-				$AnimatedSprite2D.play("back_walk")
-			else:
-				$AnimatedSprite2D.play("front_walk")
-		position += direction_to_player.normalized() * speed * _delta
-	else:
-		$AnimatedSprite2D.play("idle")
+			$AnimatedSprite2D.play("idle")
 
 
 func _on_detection_area_body_entered(body):
 	player = body
-	player_chase = true
+	if body.has_method("player"):
+		player_chase = true
 
 func _on_detection_area_body_exited(body):
 	player = null
-	player_chase = false
+	if body.has_method("player"):
+		player_chase = false
 	
 func enemy():
 	pass
@@ -53,11 +65,11 @@ func enemy():
 func deal_with_damage():
 	if player_in_attack_zone and Global.player_current_attack == true:
 		if can_take_damage == true:
-			health = health - 10
-			spawn_dmgIndicator(10)
+			health = health - 10 * player_level
+			spawn_dmgIndicator(10 * player_level)
 			$take_damage_cooldown.start()
 			can_take_damage = false
-			print("pumpkin health is ", health)
+			print("witch health is ", health)
 			set_health_label()
 			if health <= 0: 
 				give_experience()
@@ -67,6 +79,7 @@ func deal_with_damage():
 func _on_enemy_hitbox_body_entered(body):
 	if body.has_method("player"):
 		player_in_attack_zone = true
+		
 
 func _on_enemy_hitbox_body_exited(body):
 	if body.has_method("player"):
@@ -100,3 +113,11 @@ func give_experience():
 func give_gold():
 	drop_gold.emit(120)
 
+func set_player_level():
+	player_level +=1
+
+
+
+
+
+	

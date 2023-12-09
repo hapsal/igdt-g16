@@ -151,13 +151,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f25m8"]
-radius = 466.725
+radius = 220.021
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sbuse"]
-radius = 221.0
+radius = 158.114
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_xhktt"]
-b = Vector2(0, 122)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ta5ww"]
+radius = 57.0
+height = 158.0
 
 [node name="enemy" type="CharacterBody2D"]
 position = Vector2(125.486, 127.677)
@@ -167,8 +168,7 @@ script = ExtResource("1_1xci4")
 position = Vector2(0.514, -12.677)
 scale = Vector2(1.34879, 1.28405)
 sprite_frames = SubResource("SpriteFrames_gra1f")
-animation = &"right_walk"
-frame_progress = 0.471078
+animation = &"idle"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-13.4864, 6.32324)
@@ -196,8 +196,8 @@ step = 1.0
 show_percentage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4.486, -64.677)
-shape = SubResource("SegmentShape2D_xhktt")
+position = Vector2(-6.486, -12.677)
+shape = SubResource("CapsuleShape2D_ta5ww")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
