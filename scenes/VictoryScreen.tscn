@@ -42,7 +42,7 @@ theme_override_constants/separation = 20
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = " RESTART "
+text = " PLAY AGAIN "
 
 [node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
