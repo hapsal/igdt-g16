@@ -14,8 +14,8 @@ border_color = Color(0, 0, 0, 1)
 script = ExtResource("1_joywg")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-offset_right = 1153.0
-offset_bottom = 644.0
+offset_right = 1156.0
+offset_bottom = 645.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_51fs1")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]

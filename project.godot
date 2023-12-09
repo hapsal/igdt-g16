@@ -20,6 +20,10 @@ config/icon="res://addons/icon.svg"
 Global="*res://Scripts/global.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="igdt-g16"
