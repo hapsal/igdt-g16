@@ -304,8 +304,8 @@ radius = 224.009
 radius = 119.105
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y58id"]
-radius = 62.0
-height = 180.0
+radius = 72.0
+height = 208.0
 
 [node name="mainboss" type="CharacterBody2D"]
 position = Vector2(125.486, 127.677)
@@ -338,7 +338,7 @@ offset_left = -82.486
 offset_top = -131.677
 offset_right = 76.514
 offset_bottom = -110.677
-max_value = 300.0
+max_value = 1000.0
 step = 1.0
 show_percentage = false
 

@@ -107,11 +107,28 @@ position = Vector2(213, 102.5)
 scale = Vector2(0.147744, 0.147744)
 texture = ExtResource("3_0bg2j")
 
+[node name="Label3" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Leveling up increases healing, attack
+damage and max health."
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Control"]
 stream = ExtResource("2_vceby")
 volume_db = -10.0
 autoplay = true
 bus = &"Music"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+offset_left = 7.0
+offset_top = 599.0
+offset_right = 399.0
+offset_bottom = 639.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Game made by IGDT GROUP 16 (Elma, Ermir, Lauri, Lani and Hannu)      
+Dialogue System by Nathan Hoad
+"
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
 position = Vector2(575, 318)

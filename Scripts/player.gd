@@ -3,8 +3,11 @@ extends CharacterBody2D
 # Combat system variables
 var enemy_in_attack_range = false
 var boss_in_attack_range = false
+var ghost_in_attack_range = false
+var witch_in_attack_range = false
 var enemy_attack_cooldown = true
 var helaing_cooldown = false
+var enemy = null
 
 var player_alive = true
 var attack_in_progress = false
@@ -22,7 +25,7 @@ var gold = 0
 var level = 1
 var levelup = 0
 var maxxp = 100
-
+var maxhealth = 100
 #UI
 var progress = 0
 
@@ -34,7 +37,6 @@ var anim_sprite: AnimatedSprite2D  # Reference to the AnimatedSprite2D node
 func _ready():
 	anim_sprite = $AnimatedSprite2D # Get a reference to the AnimatedSprite2D node
 	anim_sprite.play("front_walk")
-
 
 func _physics_process(delta):
 
@@ -139,6 +141,7 @@ func set_player_status():
 
 func set_health_bar():
 	$Camera2D/CanvasLayer/UI/StatusMenu/HealthBar/HPBar.value = health
+	$Camera2D/CanvasLayer/UI/StatusMenu/HealthBar/HPBar.max_value = maxhealth
 	
 func set_experience_bar():
 	$Camera2D/CanvasLayer/UI/StatusMenu/XPBar/XPBar.value = experience
@@ -152,18 +155,27 @@ func set_level():
 
 
 func _on_player_hitbox_body_entered(body):
+	
 	if body.has_method("enemy"):
 		enemy_in_attack_range = true
 	if body.has_method("boss"):
 		boss_in_attack_range = true
-		
+	if body.has_method("witch"):
+		witch_in_attack_range = true
+	if body.has_method("ghost"):
+		ghost_in_attack_range = true
+	enemy = body
+	
 func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy"):
 		enemy_in_attack_range = false
 	if body.has_method("boss"):
 		boss_in_attack_range = false
-
-
+	if body.has_method("witch"):
+		witch_in_attack_range = false
+	if body.has_method("ghost"):
+		ghost_in_attack_range = false
+	enemy = null
 
 func player():
 	pass
@@ -172,13 +184,21 @@ func enemy_attack():
 	if enemy_in_attack_range and enemy_attack_cooldown and player_alive == true:
 		var attackPower = 10
 		if(boss_in_attack_range):
-			attackPower = 30
-		spawn_dmgIndicator(attackPower)
-		health = health - attackPower
-		$DamageSound.play()
-		enemy_attack_cooldown = false
-		$attack_cooldown.start() 
-		print("player health is ", health)
+			if(enemy.death!=true):
+				attackPower = 100
+			else:
+				attackPower = 0
+		elif(ghost_in_attack_range):
+			attackPower = 40
+		elif(witch_in_attack_range):
+			attackPower = 20
+		if(attackPower>0):
+			spawn_dmgIndicator(attackPower)
+			health = health - attackPower
+			$DamageSound.play()
+			enemy_attack_cooldown = false
+			$attack_cooldown.start() 
+			print("player health is ", health)
 
 
 func _on_attack_cooldown_timeout(): 
@@ -239,12 +259,13 @@ func heal():
 		spawn_healingIndicator(10*level)
 		$healing_cooldown.start()
 		helaing_cooldown = true
-		if(health>100):
-			health = 100
+		if(health>maxhealth):
+			health = maxhealth
 
 func check_xp():
 	if(experience>=maxxp):
 		level += 1
+		maxhealth +=10
 		new_player_level.emit(level)
 		experience = experience-maxxp
 

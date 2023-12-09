@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dukqyqxy3yqbi"]
+[gd_scene load_steps=6 format=3 uid="uid://dukqyqxy3yqbi"]
 
 [ext_resource type="Script" path="res://Scripts/NPC.gd" id="1_y5bqe"]
 [ext_resource type="Texture2D" uid="uid://s8n260exbdip" path="res://art/npc3_side.png" id="2_7sid5"]
@@ -7,17 +7,28 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_3nitl"]
 radius = 189.13
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt1iw"]
+radius = 39.486
+height = 127.354
+
 [node name="NPC" type="Area2D"]
 script = ExtResource("1_y5bqe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7sid5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_3nitl")
-
 [node name="Indicator" type="Sprite2D" parent="."]
 visible = false
+z_index = 100
 position = Vector2(-1, -115)
 scale = Vector2(0.40625, 0.40625)
 texture = ExtResource("3_nslue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3nitl")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-1.486, 1.323)
+shape = SubResource("CapsuleShape2D_vt1iw")

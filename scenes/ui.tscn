@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cy0tytgbep4mh"]
+[gd_scene load_steps=18 format=3 uid="uid://cy0tytgbep4mh"]
 
 [ext_resource type="Script" path="res://scenes/globalControl.gd" id="1_sov1f"]
 [ext_resource type="Texture2D" uid="uid://bem80amf0wnhs" path="res://art/enemy_map.png" id="2_c64vn"]
@@ -14,9 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://cs8y3i3mcmg56" path="res://scenes/mainboss.tscn" id="12_xusru"]
 [ext_resource type="PackedScene" uid="uid://crvxipfbkc7t" path="res://scenes/npc4.tscn" id="13_w0gls"]
 [ext_resource type="PackedScene" uid="uid://chwkhkv0faeg2" path="res://scenes/enemy_3.tscn" id="13_x7s8q"]
+[ext_resource type="Script" path="res://scenes/MusicChange.gd" id="15_w3sg5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ok80v"]
 size = Vector2(171, 175)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l1ghe"]
+radius = 172.0
+height = 1362.0
 
 [node name="MapView" type="Control"]
 layout_mode = 3
@@ -59,9 +64,9 @@ polygon = PackedVector2Array(3451, 438, 3449, 1892, 9431, 1890, 9949, 1896, 9954
 
 [node name="Player" parent="." instance=ExtResource("7_gf4sa")]
 z_index = 4
-position = Vector2(617, -615)
+position = Vector2(612, -680)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_57pqb")
 volume_db = -8.0
 autoplay = true
@@ -153,6 +158,13 @@ position = Vector2(4551, 542)
 [node name="enemy13" parent="." groups=["Enemies"] instance=ExtResource("5_idkly")]
 position = Vector2(5943.49, 1458.68)
 
+[node name="MusicChange" type="Area2D" parent="."]
+script = ExtResource("15_w3sg5")
+
+[node name="MusicChangeArea" type="CollisionShape2D" parent="MusicChange"]
+position = Vector2(7365, 1474)
+shape = SubResource("CapsuleShape2D_l1ghe")
+
 [connection signal="get_exp" from="." to="Player" method="_on_map_view_get_exp"]
 [connection signal="new_player_level" from="Player" to="." method="_on_player_new_player_level"]
 [connection signal="drop_exp" from="enemy" to="." method="_on_enemy_drop_exp"]
@@ -203,3 +215,4 @@ position = Vector2(5943.49, 1458.68)
 [connection signal="drop_gold" from="enemy12" to="." method="_on_enemy_drop_gold"]
 [connection signal="drop_exp" from="enemy13" to="." method="_on_enemy_drop_exp"]
 [connection signal="drop_gold" from="enemy13" to="." method="_on_enemy_drop_gold"]
+[connection signal="body_entered" from="MusicChange" to="." method="_on_music_change_body_entered"]

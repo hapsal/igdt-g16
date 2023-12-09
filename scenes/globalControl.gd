@@ -1,5 +1,7 @@
 extends Control
 var experience = 0
+var musicChanged = false
+
 
 signal get_exp(amount)
 # Called when the node enters the scene tree for the first time.
@@ -33,3 +35,13 @@ func _on_mainboss_drop_gold(amount):
 
 func _on_mainboss_drop_exp(amount):
 	$Player.get_gold(amount)
+
+
+func _on_music_change_body_entered(body):
+	if body.has_method("player"):
+			# Change the background music when the player enters
+			var background_music = $MusicPlayer # Replace "YourNodePath" with the actual path to your AudioStreamPlayer node
+			if background_music and musicChanged!=true:
+				musicChanged = true
+				background_music.stream = load("res://assets/audio/music/battle_music.wav")  # Replace with the path to your new music file
+				background_music.play()  # Play the new music

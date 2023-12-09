@@ -8,12 +8,10 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_NPC_body_entered(body):
-	if body.has_method("player"):
 		active = true
 
 
 func _on_NPC_body_exited(body):
-	if body.has_method("player"):
 		active = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

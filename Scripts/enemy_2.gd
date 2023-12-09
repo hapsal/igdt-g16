@@ -61,6 +61,9 @@ func _on_detection_area_body_exited(body):
 	
 func enemy():
 	pass
+	
+func ghost():
+	pass
 
 func deal_with_damage():
 	if player_in_attack_zone and Global.player_current_attack == true:
