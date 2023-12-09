@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_10"
+type="Resource"
+uid="uid://darm7cthir3gl"
+path="res://.godot/imported/Civilian.dialogue-20188891e36ee3c30f8d040ad556864b.tres"
+
+[deps]
+
+source_file="res://Civilian.dialogue"
+dest_files=["res://.godot/imported/Civilian.dialogue-20188891e36ee3c30f8d040ad556864b.tres"]
+
+[params]
+
+defaults=true

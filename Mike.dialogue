@@ -1,0 +1,11 @@
+~ start
+
+Jack: Traveler, I'm glad you are here. The evil lord is right there in this dark forest. I hope you have trained to get strength and a steel sword is also very handy for defeating them.
+- I am not strong enough.
+	Mike: Keep killing their minions to get stronger. You can also buy the sword if you haven't already.
+- (Leave without saying anything)
+	Mike: What a weird dude.
+- I am all ready! 
+	Mike: I wish you good luck and hope you can finally save this village.
+
+=> END

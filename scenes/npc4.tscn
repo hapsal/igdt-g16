@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://crvxipfbkc7t"]
 
-[ext_resource type="Script" path="res://Scripts/NPC.gd" id="1_8fb44"]
+[ext_resource type="Script" path="res://Scripts/NPC3.gd" id="1_quabh"]
 [ext_resource type="Texture2D" uid="uid://bd6dkt68juv8o" path="res://art/npc3_front.png" id="2_pd8qp"]
 [ext_resource type="Texture2D" uid="uid://bs6houjtbiryt" path="res://ui/Group 7.png" id="3_ck6oy"]
 
@@ -12,7 +12,7 @@ radius = 39.486
 height = 127.354
 
 [node name="NPC" type="Area2D"]
-script = ExtResource("1_8fb44")
+script = ExtResource("1_quabh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_pd8qp")

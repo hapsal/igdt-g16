@@ -259,6 +259,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_s3y3e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_w8qsx")
 }, {
 "duration": 1.0,
@@ -307,7 +315,7 @@ shape = SubResource("CapsuleShape2D_qh63b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(134, 81)
 sprite_frames = SubResource("SpriteFrames_b5ay7")
-animation = &"death_animation"
+animation = &"idle"
 
 [node name="player_hitbox" type="Area2D" parent="."]
 position = Vector2(128, 103)

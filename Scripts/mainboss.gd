@@ -3,7 +3,7 @@ extends CharacterBody2D
 var speed = 300
 var player_chase = false
 var player = null
-var health = 1000
+var health = 1200
 var player_in_attack_zone = false
 var can_take_damage = true
 var combat_system
@@ -118,10 +118,10 @@ func set_health_label() -> void:
 	$HealthLabel.value = health
 	
 func give_experience():
-	drop_exp.emit(60)
+	drop_exp.emit(1000)
 	
 func give_gold():
-	drop_gold.emit(120)
+	drop_gold.emit(150000)
 
 func set_player_level():
 	player_level +=1

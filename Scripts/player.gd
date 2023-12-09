@@ -13,6 +13,7 @@ var player_alive = true
 var attack_in_progress = false
 var last_input = null
 
+var is_dialog_active = false
 
 signal new_player_level(level)
 
@@ -37,18 +38,20 @@ var anim_sprite: AnimatedSprite2D  # Reference to the AnimatedSprite2D node
 func _ready():
 	anim_sprite = $AnimatedSprite2D # Get a reference to the AnimatedSprite2D node
 	anim_sprite.play("front_walk")
-
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 func _physics_process(delta):
 
 	if(helaing_cooldown):
 		$Camera2D/CanvasLayer/UI/status/HealingCooldown.value = progress+$healing_cooldown.time_left
 	else:
 		$Camera2D/CanvasLayer/UI/status/HealingCooldown.value = 0
-	if(player_alive):
+	if(player_alive and is_dialog_active==false):
 		if(attack_in_progress):
 			attack_movement(delta)
 		else:
 			player_movement(delta) 
+	else:
+		anim_sprite.play("idle")
 
 	enemy_attack()
 	set_player_status()
@@ -185,7 +188,7 @@ func enemy_attack():
 		var attackPower = 10
 		if(boss_in_attack_range):
 			if(enemy.death!=true):
-				attackPower = 100
+				attackPower = 65
 			else:
 				attackPower = 0
 		elif(ghost_in_attack_range):
@@ -274,4 +277,10 @@ func check_xp():
 
 func _on_healing_cooldown_timeout():
 	helaing_cooldown = false
+func _on_dialogue_ended(_resource: DialogueResource):
+	is_dialog_active = false
 
+
+
+func _on_npc_dialogue_started():
+	is_dialog_active = true;

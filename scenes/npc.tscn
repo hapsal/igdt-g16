@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6otn162ksfrl"]
+[gd_scene load_steps=7 format=3 uid="uid://c6otn162ksfrl"]
 
 [ext_resource type="Script" path="res://Scripts/NPC.gd" id="1_vevgr"]
 [ext_resource type="Texture2D" uid="uid://dbqlhbybbo70y" path="res://art/npc1_front.png" id="2_bpnd4"]
 [ext_resource type="Texture2D" uid="uid://bs6houjtbiryt" path="res://ui/Group 7.png" id="3_c2v6y"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="4_ecp63"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3nitl"]
 radius = 183.098
@@ -31,3 +32,8 @@ texture = ExtResource("3_c2v6y")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-1.486, 1.323)
 shape = SubResource("CapsuleShape2D_gvxua")
+
+[node name="DialogueLabel" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_ecp63")
