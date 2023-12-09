@@ -41,17 +41,17 @@ texture = ExtResource("3_tr6qg")
 flip_h = true
 flip_v = true
 
-[node name="Area2D" type="Area2D" parent="map"]
+[node name="StaticBody2D" type="StaticBody2D" parent="map"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="map/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map/StaticBody2D"]
 position = Vector2(756, -83)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_70jie")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map/StaticBody2D"]
 polygon = PackedVector2Array(3517, 434, 3525, 49, 3468, 46, 3465, -1, 3432, 15, 3418, 37, 3418, 313, -469, 325, -466, -142, -129, -142, -95, -163, -95, -289, 50, -289, 52, -187, 62, -158, 285, -149, 323, -184, 335, -477, 357, -544, 423, -558, 656, -560, 663, -636, 820, -639, 823, -565, 842, -548, 1132, -546, 1137, -513, 1151, -467, 1160, -227, 1168, -187, 1218, -158, 1287, -153, 1434, -151, 1446, -251, 1600, -256, 1600, -158, 1717, -151, 2007, -146, 2050, -163, 2050, -222, 2048, -251, 2107, -263, 2174, -263, 2200, -261, 2226, -215, 2216, -168, 2238, -151, 2699, -146, 2697, -244, 2868, -237, 2882, -161, 3425, -153, 3448, -125, 3468, -120, 3472, -170, 3472, -1236, -538, -1250, -533, 436)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="map/Area2D"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="map/StaticBody2D"]
 polygon = PackedVector2Array(3451, 438, 3449, 1892, 9431, 1890, 9949, 1896, 9954, -613, 3471, -608, 3476, -165, 3517, -162, 3520, -219, 3520, -267, 5865, -279, 5980, -263, 6110, -222, 6211, -171, 6278, -133, 6367, -73, 6427, -16, 6484, 51, 6557, 140, 6608, 203, 6646, 245, 6697, 305, 6770, 426, 6853, 553, 6913, 654, 6948, 727, 6986, 810, 7030, 953, 7056, 1060, 7081, 1146, 7122, 1241, 7161, 1286, 7195, 1311, 7240, 1324, 7275, 1305, 7313, 1238, 7332, 1194, 7364, 1108, 7408, 975, 7459, 845, 7564, 562, 7716, 346, 7834, 140, 8008, -44, 8154, -133, 8342, -187, 8494, -232, 8669, -241, 8837, -241, 9034, -238, 9250, -171, 9364, -130, 9535, -9, 9611, 45, 9707, 149, 9758, 245, 9808, 359, 9856, 479, 9885, 619, 9907, 749, 9916, 918, 9926, 1207, 9910, 1327, 9869, 1456, 9835, 1561, 9810, 1643, 9735, 1719, 9660, 1777, 9552, 1822, 9420, 1858, 9154, 1864, 3490, 1857, 3497, 435)
 
 [node name="Player" parent="." instance=ExtResource("7_gf4sa")]
