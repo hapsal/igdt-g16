@@ -20,6 +20,11 @@ config/icon="res://addons/icon.svg"
 Global="*res://Scripts/global.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
+[dialogue_manager]
+
+general/states=["Global"]
+general/export_characters_in_translation=false
+
 [display]
 
 window/stretch/mode="canvas_items"

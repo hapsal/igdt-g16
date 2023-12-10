@@ -1,5 +1,6 @@
 @icon("./assets/icon.svg")
 
+@tool
 ## A RichTextLabel specifically for use with [b]Dialogue Manager[/b] dialogue.
 class_name DialogueLabel extends RichTextLabel
 
@@ -18,13 +19,19 @@ signal finished_typing()
 
 
 ## The action to press to skip typing.
-@export var skip_action: String = "ui_cancel"
+@export var skip_action: StringName = &"ui_cancel"
 
 ## The speed with which the text types out.
 @export var seconds_per_step: float = 0.02
 
 ## Automatically have a brief pause when these characters are encountered.
 @export var pause_at_characters: String = ".?!"
+
+## Don't auto pause if the charcter after the pause is one of these.
+@export var skip_pause_at_character_if_followed_by: String = ")\""
+
+## The amount of time to pause when exposing a character present in pause_at_characters.
+@export var seconds_per_pause_step: float = 0.3
 
 
 ## The current line of dialogue.
@@ -67,7 +74,7 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if self.is_typing and visible_ratio < 1 and event.is_action_pressed(skip_action):
+	if self.is_typing and visible_ratio < 1 and InputMap.has_action(skip_action) and event.is_action_pressed(skip_action):
 		get_viewport().set_input_as_handled()
 		skip_typing()
 
@@ -82,6 +89,9 @@ func type_out() -> void:
 	_last_mutation_index = -1
 
 	self.is_typing = true
+
+	# Allow typing listeners a chance to connect
+	await get_tree().process_frame
 
 	if get_total_character_count() == 0:
 		self.is_typing = false
@@ -112,7 +122,7 @@ func _type_next(delta: float, seconds_needed: float) -> void:
 
 	# Pause on characters like "."
 	if _should_auto_pause():
-		additional_waiting_seconds += seconds_per_step * 15
+		additional_waiting_seconds += seconds_per_pause_step
 
 	# Pause at literal [wait] directives
 	if _last_wait_index != visible_characters and additional_waiting_seconds > 0:
@@ -169,6 +179,10 @@ func _should_auto_pause() -> bool:
 
 	var parsed_text: String = get_parsed_text()
 
+	# Ignore pause characters if they are next to a non-pause character
+	if parsed_text[visible_characters] in skip_pause_at_character_if_followed_by.split():
+		return false
+
 	# Ignore "." if it's between two numbers
 	if visible_characters > 3 and parsed_text[visible_characters - 1] == ".":
 		var possible_number: String = parsed_text.substr(visible_characters - 2, 3)
@@ -176,7 +190,8 @@ func _should_auto_pause() -> bool:
 			return false
 
 	# Ignore two non-"." characters next to each other
-	if visible_characters > 1 and parsed_text[visible_characters - 1] in pause_at_characters.replace(".", "").split():
+	var other_pause_characters: PackedStringArray = pause_at_characters.replace(".", "").split()
+	if visible_characters > 1 and parsed_text[visible_characters - 1] in other_pause_characters and parsed_text[visible_characters] in other_pause_characters:
 		return false
 
 	return parsed_text[visible_characters - 1] in pause_at_characters.split()

@@ -118,7 +118,7 @@ func set_health_label() -> void:
 	$HealthLabel.value = health
 	
 func give_experience():
-	drop_exp.emit(1000)
+	drop_exp.emit(100)
 	
 func give_gold():
 	drop_gold.emit(150000)

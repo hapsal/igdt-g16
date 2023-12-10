@@ -28,6 +28,10 @@ var dialogue_line: DialogueLine:
 			queue_free()
 			return
 
+		# If the node isn't ready yet then none of the labels will be ready yet either
+		if not is_node_ready():
+			await ready
+
 		dialogue_line = next_dialogue_line
 
 		character_label.visible = not dialogue_line.character.is_empty()
@@ -52,7 +56,7 @@ var dialogue_line: DialogueLine:
 		if dialogue_line.responses.size() > 0:
 			balloon.focus_mode = Control.FOCUS_NONE
 			responses_menu.show()
-		elif dialogue_line.time != null:
+		elif dialogue_line.time != "":
 			var time = dialogue_line.text.length() * 0.02 if dialogue_line.time == "auto" else dialogue_line.time.to_float()
 			await get_tree().create_timer(time).timeout
 			next(dialogue_line.next_id)
