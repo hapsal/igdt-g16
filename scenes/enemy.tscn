@@ -188,6 +188,7 @@ wait_time = 0.5
 
 [node name="HealthLabel" type="ProgressBar" parent="."]
 modulate = Color(0.988235, 0, 0, 1)
+z_index = 100
 offset_left = -82.486
 offset_top = -131.677
 offset_right = 76.514

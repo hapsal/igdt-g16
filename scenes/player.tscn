@@ -331,6 +331,7 @@ wait_time = 0.7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(134.227, 90.199)
+zoom = Vector2(0.8, 0.8)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
@@ -430,26 +431,34 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="status" type="HBoxContainer" parent="Camera2D/CanvasLayer/UI"]
+[node name="status" type="VBoxContainer" parent="Camera2D/CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -92.0
-offset_top = -38.0
-offset_right = 75.0
-offset_bottom = -20.0
+offset_left = -120.0
+offset_top = -64.0
+offset_right = 104.0
+offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.1897, 1.1897)
 
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer/UI/status"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Healing cooldown
+"
+horizontal_alignment = 1
+
 [node name="HealingCooldown" type="ProgressBar" parent="Camera2D/CanvasLayer/UI/status"]
 modulate = Color(1, 0, 0, 1)
+layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
+size_flags_vertical = 3
 size_flags_stretch_ratio = 3.15
 max_value = 2.0
 allow_lesser = true

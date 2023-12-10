@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cy0tytgbep4mh"]
+[gd_scene load_steps=18 format=3 uid="uid://cy0tytgbep4mh"]
 
 [ext_resource type="Script" path="res://scenes/globalControl.gd" id="1_sov1f"]
 [ext_resource type="Texture2D" uid="uid://bem80amf0wnhs" path="res://art/enemy_map.png" id="2_c64vn"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://t0dfpbn1qwws" path="res://scenes/enemy.tscn" id="5_idkly"]
 [ext_resource type="PackedScene" uid="uid://bokboxq8corst" path="res://scenes/enemy_2.tscn" id="7_g01sh"]
 [ext_resource type="PackedScene" uid="uid://b72s2ywpxk7mo" path="res://scenes/player.tscn" id="7_gf4sa"]
-[ext_resource type="Script" path="res://Scripts/NPC3.gd" id="8_mons4"]
 [ext_resource type="PackedScene" uid="uid://dhm7lq8b4c80m" path="res://scenes/npc3.tscn" id="9_8lpdk"]
 [ext_resource type="PackedScene" uid="uid://c6otn162ksfrl" path="res://scenes/npc.tscn" id="9_c2dxo"]
 [ext_resource type="Script" path="res://Scripts/NPC2.gd" id="10_1mrvs"]
@@ -65,7 +64,7 @@ polygon = PackedVector2Array(3451, 438, 3449, 1892, 9431, 1890, 9949, 1896, 9954
 
 [node name="Player" parent="." instance=ExtResource("7_gf4sa")]
 z_index = 4
-position = Vector2(612, -680)
+position = Vector2(620, -697)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_57pqb")
@@ -78,7 +77,6 @@ position = Vector2(-18, -226)
 
 [node name="NPC2" parent="." instance=ExtResource("9_8lpdk")]
 position = Vector2(1521, -189)
-script = ExtResource("8_mons4")
 
 [node name="NPC3" parent="." instance=ExtResource("10_s3rft")]
 position = Vector2(566, -99)
@@ -114,7 +112,7 @@ position = Vector2(3434, -73)
 [node name="enemy_4" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
 position = Vector2(2787.49, -175.323)
 
-[node name="enemy_5" parent="." instance=ExtResource("13_x7s8q")]
+[node name="enemy_5" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
 position = Vector2(2461.49, 160.677)
 
 [node name="enemy_6" parent="." groups=["Enemies"] instance=ExtResource("13_x7s8q")]
@@ -167,6 +165,7 @@ position = Vector2(7365, 1474)
 shape = SubResource("CapsuleShape2D_l1ghe")
 
 [connection signal="get_exp" from="." to="Player" method="_on_map_view_get_exp"]
+[connection signal="has_gold" from="Player" to="." method="_on_player_has_gold"]
 [connection signal="new_player_level" from="Player" to="." method="_on_player_new_player_level"]
 [connection signal="dialogue_started" from="NPC" to="Player" method="_on_npc_dialogue_started"]
 [connection signal="dialogue_started" from="NPC2" to="Player" method="_on_npc_dialogue_started"]

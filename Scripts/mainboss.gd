@@ -3,7 +3,7 @@ extends CharacterBody2D
 var speed = 300
 var player_chase = false
 var player = null
-var health = 1200
+var health = 1300
 var player_in_attack_zone = false
 var can_take_damage = true
 var combat_system
@@ -30,7 +30,7 @@ func _physics_process(_delta):
 		deal_with_damage()
 		if player_in_attack_zone:
 			$AnimatedSprite2D.play(attackDirection)
-		elif player_chase:
+		elif player_chase and player != null:
 			var direction_to_player = player.position - position
 			var x_difference = abs(direction_to_player.x)
 			var y_difference = abs(direction_to_player.y)

@@ -298,7 +298,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f25m8"]
-radius = 224.009
+radius = 434.041
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sbuse"]
 radius = 119.105
@@ -334,6 +334,7 @@ wait_time = 0.5
 
 [node name="HealthLabel" type="ProgressBar" parent="."]
 modulate = Color(0.835294, 0, 0.898039, 1)
+z_index = 100
 offset_left = -82.486
 offset_top = -131.677
 offset_right = 76.514

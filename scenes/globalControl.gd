@@ -1,7 +1,8 @@
 extends Control
 var experience = 0
 var musicChanged = false
-var has_money = true
+var has_money = false
+var has_sword = false
 
 signal get_exp(amount)
 # Called when the node enters the scene tree for the first time.
@@ -46,4 +47,12 @@ func _on_music_change_body_entered(body):
 				background_music.stream = load("res://assets/audio/music/battle_music.wav")  # Replace with the path to your new music file
 				background_music.play()  # Play the new music
 
+func sword_buy():
+	has_sword = true
+	$Player.sword_bought()
 
+
+
+
+func _on_player_has_gold(gold):
+	has_money = true

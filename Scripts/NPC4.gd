@@ -27,7 +27,7 @@ func _process(delta):
 	if active == true && Input.is_action_just_pressed("Interact") == true && is_dialog_active == false:
 		is_dialog_active = true;
 		dialogue_started.emit()
-		DialogueManager.show_example_dialogue_balloon(load("res://Smith.dialogue"),"start")
+		DialogueManager.show_example_dialogue_balloon(load("res://Civilian.dialogue"),"start")
 		return
 	pass
 func _on_dialogue_ended(_resource: DialogueResource):

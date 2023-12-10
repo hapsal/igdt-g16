@@ -1,11 +1,11 @@
 ~ start
 
-Jack: Hi traveler, nice to meet you. I am the mayor of this town that is plagued by the forces of the evil lord. Are you here to help us?
+Jack: Hi traveler, nice to meet you. I am the mayor of this town, that is plagued by the forces of the evil lord. Are you here to help us?
 - I will gather strength first.
 	Jack: I understand! You can train by killing their minions and you can get new equipment from our town blacksmith.
 - (Leave without saying anything)
 	Jack: Ehm, okay see you I guess. 
 - Where can I find this evil lord? I am going to defeat him! 
-	Jack: He is right from here after you go trough the field filled with enemies. By brother Mike is there before you enter the dark forest of the evil lord. If you cannot find the place just go right to the edge of the field and follow it until you find my brother in the down-right corner.
+	Jack: He is right from here after you go trough the field filled with enemies. My brother Mike is there before you enter the dark forest of the evil lord. If you cannot find the place just go right to the edge of the field and follow it until you find my brother in the down-right corner.
 
 => END

@@ -1,11 +1,14 @@
 ~ start
 
 Natalie: [[Hi|Hello|Howdy]], there customer!
-- I need to buy a stronger sword (1800 gold)!
-	if has_money==false:
+- I need to buy a stronger sword (1800 gold)
+	if has_sword:
+		Natalie: You already have a sword. That is the best I can get you.
+	elif has_money==false:
 		Natalie: You don't seem to have enough gold yet.
-	if has_money:
+	elif has_money:
 		Natalie: Here you go. This is a fine steel blade and will increase your attack damage a lot.
+		do sword_buy()
 - I don't need your services right now
 	Natalie: Okay, see you next time!
 

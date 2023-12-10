@@ -16,6 +16,7 @@ var last_input = null
 var is_dialog_active = false
 
 signal new_player_level(level)
+signal has_gold(gold)
 
 var death_sound = true
 
@@ -41,6 +42,9 @@ func _ready():
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 func _physics_process(delta):
 
+	if(gold>=1800):
+		has_gold.emit(gold)
+	
 	if(helaing_cooldown):
 		$Camera2D/CanvasLayer/UI/status/HealingCooldown.value = progress+$healing_cooldown.time_left
 	else:
@@ -50,7 +54,7 @@ func _physics_process(delta):
 			attack_movement(delta)
 		else:
 			player_movement(delta) 
-	else:
+	elif (player_alive):
 		anim_sprite.play("idle")
 
 	enemy_attack()
@@ -188,7 +192,7 @@ func enemy_attack():
 		var attackPower = 10
 		if(boss_in_attack_range):
 			if(enemy.death!=true):
-				attackPower = 65
+				attackPower = 55
 			else:
 				attackPower = 0
 		elif(ghost_in_attack_range):
@@ -280,7 +284,10 @@ func _on_healing_cooldown_timeout():
 func _on_dialogue_ended(_resource: DialogueResource):
 	is_dialog_active = false
 
-
-
+func sword_bought():
+	gold = gold - 1800
+	for n in 5:
+		new_player_level.emit(1)
+	
 func _on_npc_dialogue_started():
 	is_dialog_active = true;
